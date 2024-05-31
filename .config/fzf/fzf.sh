@@ -16,7 +16,8 @@ export FZF_ALT_C_OPTS="
   --height 20%"
 
 zstyle ':completion:*' menu no
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'lsd --color always --icon always $realpath'
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'lsd --color always --icon always $realpath'
 zstyle ':fzf-tab:complete:code*' fzf-preview '~/.config/fzf/fzf-preview.sh $realpath'
 
 eval "$(fzf --zsh)"

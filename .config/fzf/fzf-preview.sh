@@ -17,7 +17,7 @@ file=${1/#\~\//$HOME/}
 type=$(file --dereference --mime -- "$file")
 
 if [[ -d "$file" ]]; then
-  tree -C "$file"
+  lsd --tree --icon always --color always "$file"
   exit
 fi
 
