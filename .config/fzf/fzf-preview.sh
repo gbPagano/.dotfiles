@@ -37,7 +37,7 @@ if [[ ! $type =~ image/ ]]; then
     exit
   fi
 
-  ${batname} --style="${BAT_STYLE:-numbers}" --color=always --pager=never --theme=Catppuccin-mocha -- "$file"
+  ${batname} --style="${BAT_STYLE:-numbers}" --color=always --pager=never --theme="Catppuccin Mocha" -- "$file"
   exit
 fi
 

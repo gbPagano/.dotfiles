@@ -24,11 +24,14 @@ plugins=(
 )
 source $ZSH/oh-my-zsh.sh
 
+# bat cattpuccin theme
+source "$HOME/.config/zsh/catppuccin_mocha-bat.zsh"
+
 # aliases
 alias mkvenv="python -m venv .venv --prompt venv "
 alias venv="source ./.venv/bin/activate"
-alias bat="bat -Pn --theme=Catppuccin-mocha" # with numbers
-alias cat="bat -Pp --theme=Catppuccin-mocha" # without numbers
+alias bat="bat -Pn --theme='Catppuccin Mocha'" # with numbers
+alias cat="bat -Pp --theme='Catppuccin Mocha'" # without numbers
 alias icat="kitty +kitten icat"
 alias ls="lsd"
 alias tree="lsd --tree --depth 2"
