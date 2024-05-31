@@ -24,8 +24,8 @@ plugins=(
 )
 source $ZSH/oh-my-zsh.sh
 
-# bat cattpuccin theme
-source "$HOME/.config/zsh/catppuccin_mocha-bat.zsh"
+# cattpuccin theme
+source "$HOME/.config/zsh/catppuccin_mocha.zsh"
 
 # aliases
 alias mkvenv="python -m venv .venv --prompt venv "
@@ -50,6 +50,3 @@ source "$HOME/.config/fzf/fzf.sh"
 
 # zoxide init
 eval "$(zoxide init --cmd cd zsh)"
-
-# syntax highlighting catppuccin colorscheme
-source "$HOME/.config/zsh/catppuccin_mocha-zsh-syntax-highlighting.zsh"
