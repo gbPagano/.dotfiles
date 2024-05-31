@@ -6,7 +6,7 @@ Repository to store my configuration files
 
 Ensure you have the following installed on your system
 ```
-$ paru -S git stow bat lsd starship zoxide fzf
+$ paru -S git stow bat lsd starship zoxide fzf chafa
 ```
 
 ## Installation
