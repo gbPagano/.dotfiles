@@ -23,7 +23,7 @@ truncation_symbol = ".../"
 truncation_length = 5
 
 [python]
-format = '[(\($virtualenv\))]($style)'
+format = '[(\($virtualenv\))]($style) '
 style = "bold blue"
 
 [package]
