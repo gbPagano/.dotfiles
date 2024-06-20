@@ -1,0 +1,22 @@
+[user]
+	name = gbPagano
+	email = guilhermebpagano@gmail.com
+[init]
+	defaultBranch = main
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+[alias]
+    feat = "!f() { git commit -m \"feat: $1\"; }; f"
+    fix = "!f() { git commit -m \"fix: $1\"; }; f"
+    chore = "!f() { git commit -m \"chore: $1\"; }; f"
+    ci = "!f() { git commit -m \"ci: $1\"; }; f"
+    perf = "!f() { git commit -m \"perf: $1\"; }; f"
+    refactor = "!f() { git commit -m \"refactor: $1\"; }; f"
+    style = "!f() { git commit -m \"style: $1\"; }; f"
+    build = "!f() { git commit -m \"build: $1\"; }; f"
+    docs = "!f() { git commit -m \"docs: $1\"; }; f"
+    test = "!f() { git commit -m \"test: $1\"; }; f"
+	set-work-email = "config user.email 'gbpagano@ihm.com'"
