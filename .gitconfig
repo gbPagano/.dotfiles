@@ -1,6 +1,11 @@
 [user]
 	name = gbPagano
 	email = guilhermebpagano@gmail.com
+  signingkey = CC02DDF8EB0AA7BB
+[commit]
+  gpgsign = true
+[gpg]
+  program = gpg
 [init]
 	defaultBranch = main
 [filter "lfs"]
