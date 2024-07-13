@@ -1,5 +1,8 @@
 # oh my zsh and plugins configuration
 export ZSH="$HOME/.oh-my-zsh"
+[ ! -d $ZSH ] && \
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --keep-zshrc
+
 export OMZ_PLUGINS="$ZSH/custom/plugins"
 [ ! -d $OMZ_PLUGINS ] && mkdir -p "$(dirname $OMZ_PLUGINS)"
 
