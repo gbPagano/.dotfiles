@@ -5,3 +5,7 @@
 [home]
 --dir=home
 --target=..
+
+[etc]
+--dir=etc
+--target=/etc
