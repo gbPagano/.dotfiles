@@ -16,3 +16,7 @@ output = ["KEY_UP"]
 [[remap]]
 input = ["KEY_LEFTALT", "KEY_L"]
 output = ["KEY_RIGHT"]
+
+[[remap]]
+input = ["KEY_RIGHTALT", "KEY_C"]
+output = ["KEY_RIGHTALT", "KEY_COMMA"]
