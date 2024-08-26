@@ -20,3 +20,7 @@ output = ["KEY_RIGHT"]
 [[remap]]
 input = ["KEY_RIGHTALT", "KEY_C"]
 output = ["KEY_RIGHTALT", "KEY_COMMA"]
+
+[[remap]]
+input = ["KEY_LEFTSHIFT", "KEY_GRAVE"]
+output = ["KEY_LEFTSHIFT", "KEY_RIGHTALT", "KEY_GRAVE"]
