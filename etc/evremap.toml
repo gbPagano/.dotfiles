@@ -24,3 +24,8 @@ output = ["KEY_RIGHTALT", "KEY_COMMA"]
 [[remap]]
 input = ["KEY_LEFTSHIFT", "KEY_GRAVE"]
 output = ["KEY_LEFTSHIFT", "KEY_RIGHTALT", "KEY_GRAVE"]
+
+[[dual_role]]
+input = "KEY_CAPSLOCK"
+hold = ["KEY_LEFTCTRL"]
+tap = ["KEY_ESC"]
