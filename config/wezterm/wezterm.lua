@@ -11,4 +11,6 @@ config.scrollback_lines = 3500
 config.hide_tab_bar_if_only_one_tab = true
 config.max_fps = 144
 
+config.enable_wayland = false
+
 return config
