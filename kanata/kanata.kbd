@@ -1,0 +1,56 @@
+(defcfg
+  process-unmapped-keys yes
+)
+
+(defsrc 
+    lalt ralt caps lctl
+    h j k l
+    c grave
+)
+
+
+(defvar
+  tap-timeout   100
+  hold-timeout  200
+  tt $tap-timeout
+  ht $hold-timeout
+)
+
+(defalias 
+  latl (multi lalt (layer-while-held arrows))
+  aleft (multi (release-key lalt) left)
+  adown (multi (release-key lalt) down)
+  aup (multi (release-key lalt) up)
+  aright (multi (release-key lalt) right)
+
+  ralt (multi ralt (layer-while-held altgr))
+
+  cap (tap-hold $tt $ht esc lctl)
+
+  cedilla AG-,
+
+  grave (switch
+    ((and lshift ralt)) (unmod (ralt) grave) break
+    (lshift) S-AG-grave break
+    () grave break
+  )
+
+)
+
+(deflayer base 
+  @latl @ralt @cap lctl
+  h j k l
+  c @grave
+)
+
+(deflayer arrows 
+  _ _ _ _
+  @aleft @adown @aup @aright
+  _ _
+)
+
+(deflayer altgr 
+  _ _ _ _
+  _ _ _ _
+  @cedilla _
+)
