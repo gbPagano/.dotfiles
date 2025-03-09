@@ -28,7 +28,7 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 # cattpuccin theme
-source "$HOME/.config/zsh/catppuccin_mocha.zsh"
+source "$HOME/.dotfiles/configs/terminal/zsh/catppuccin_mocha.zsh"
 
 # aliases
 alias mkvenv="python -m venv .venv --prompt venv "

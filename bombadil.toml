@@ -1,0 +1,14 @@
+dotfiles_dir = ".dotfiles"
+gpg_user_id = "guilhermebpagano@gmail.com"
+
+
+[settings]
+posthooks = [ "sh kanata/setup.sh" ]
+
+[settings.dots]
+wezterm = { source = "configs/terminal/wezterm", target = ".config/wezterm" }
+fzf = { source = "configs/terminal/fzf", target = ".config/fzf" }
+zsh = { source = "configs/terminal/zsh/zshrc", target = ".zshrc" }
+starship = { source = "configs/terminal/starship.toml", target = ".config/starship.toml" }
+git = { source = "configs/git/.gitconfig", target = ".gitconfig" }
+neovim = { source = "configs/nvim", target = ".config/nvim" }
