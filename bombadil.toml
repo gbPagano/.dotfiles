@@ -1,10 +1,6 @@
 dotfiles_dir = ".dotfiles"
 gpg_user_id = "guilhermebpagano@gmail.com"
 
-
-[settings]
-posthooks = [ "sh kanata/setup.sh" ]
-
 [settings.dots]
 wezterm = { source = "configs/terminal/wezterm", target = ".config/wezterm" }
 fzf = { source = "configs/terminal/fzf", target = ".config/fzf" }

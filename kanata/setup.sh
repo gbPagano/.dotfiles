@@ -1,7 +1,9 @@
 #!/bin/bash
-# Script to install kanata and create the service using systemd
+# Install kanata and create the service using systemd
 
-KANATA_FILE="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/kanata.kbd"
+SCRIPT_DIR=$(dirname "$0")
+KANATA_FILE="${SCRIPT_DIR}/kanata.kbd"
+
 SERVICE_NAME="kanata"
 SERVICE_FILE="/etc/systemd/system/${SERVICE_NAME}.service"
 
@@ -22,7 +24,6 @@ Restart=no
 WantedBy=sysinit.target
 EOF"
 
-echo "Installing Kanata..."
 paru -S --needed kanata-bin
 
 echo "Reloading systemd daemon..."
