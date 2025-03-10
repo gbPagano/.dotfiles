@@ -11,7 +11,7 @@ cd .dotfiles
 ```
 
 > [!WARNING]  
-> Some files, such as the .gitconfig, are personal configuration files and must be changed. 
+> Personal information is stored in vars.toml. Make sure to update this file with your own details before linking configurations.
 
 ## Updates
 
