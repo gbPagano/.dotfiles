@@ -2,9 +2,6 @@
 # Terminal environment setup script
 # Installs and configures all terminal-related abilities and configurations
 
-# Get the directory where this script is located
-SCRIPT_DIR=$(dirname "$0")
-
 # Check if paru is installed
 if ! command -v paru &> /dev/null; then
     echo "❌ Error: paru is not installed. Please install paru first."
@@ -31,5 +28,8 @@ paru -S --needed \
     fzf \
     chafa \
     fd
+
+echo "Setting Zsh as default shell"
+chsh -s /bin/zsh $USER
 
 echo "Terminal environment setup complete!"
