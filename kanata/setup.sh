@@ -1,8 +1,7 @@
 #!/bin/bash
 # Install kanata and create the service using systemd
 
-SCRIPT_DIR=$(dirname "$0")
-KANATA_FILE="${SCRIPT_DIR}/kanata.kbd"
+KANATA_FILE="$HOME/.dotfiles/kanata/kanata.kbd"
 
 SERVICE_NAME="kanata"
 SERVICE_FILE="/etc/systemd/system/${SERVICE_NAME}.service"
