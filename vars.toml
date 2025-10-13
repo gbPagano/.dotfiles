@@ -1,5 +1,5 @@
 [git]
 name = "gbPagano"
 email = "guilhermebpagano@gmail.com"
-signingkey = "CC02DDF8EB0AA7BB"
+signingkey = "88BA76AFDA1F6EA8"
 gpgsign = true
