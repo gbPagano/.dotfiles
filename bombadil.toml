@@ -10,3 +10,4 @@ zsh = { source = "configs/terminal/zsh/zshrc", target = ".zshrc" }
 starship = { source = "configs/terminal/starship.toml", target = ".config/starship.toml" }
 neovim = { source = "configs/nvim", target = ".config/nvim" }
 git = { source = "configs/git/.gitconfig", target = ".gitconfig" }
+dms = { source = "configs/dms/settings.json", target = ".config/DankMaterialShell/settings.json" }
