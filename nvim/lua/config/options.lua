@@ -16,6 +16,7 @@ vim.o.winborder = "rounded" -- Use rounded borders for floating windows and popu
 vim.o.cmdheight = 0 -- Command line height
 vim.o.lazyredraw = true -- Don't redraw during macros
 vim.o.synmaxcol = 300 -- Syntax highlighting limit
+vim.o.showmode = false -- Dont show mode since we have a statusline
 
 -- Identation
 vim.o.expandtab = true -- Insert spaces instead of a real TAB character (\t)
@@ -46,9 +47,9 @@ vim.o.hidden = true -- Allow switching buffers without saving changes
 vim.o.errorbells = false -- Disable error bells and beeps
 vim.o.backspace = "indent,eol,start" -- Enable intuitive backspace behavior in insert mode
 vim.o.autochdir = false -- Keep a fixed working directory (avoid auto cd)
-vim.o.selection = "exclusive" -- Use exclusive selection (last character not included)
 vim.o.modifiable = true -- Allow editing buffer contents
 vim.o.encoding = "UTF-8" -- Set internal encoding to UTF-8
+vim.o.completeopt = "menuone,noinsert,noselect" -- IDE-like completion behavior
 vim.opt.iskeyword:append("-") -- Treat dash-separated words as a single word
 vim.opt.path:append("**") -- Include subdirectories in search
 vim.opt.clipboard:append("unnamedplus") -- Use system clipboard for all yank, delete and paste
