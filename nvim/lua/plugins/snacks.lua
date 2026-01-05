@@ -8,7 +8,30 @@ return {
     image = { enabled = true },
     input = { enabled = true },
     notifier = { enabled = true },
-    picker = { enabled = true },
+    picker = {
+      enabled = true,
+      sources = {
+        explorer = {
+          -- auto_close = true,
+          -- This is the specific setting to close after opening a file
+          jump = { close = true },
+        },
+      },
+      win = {
+        input = {
+          keys = {
+            ["<c-h>"] = { "toggle_hidden", mode = { "i", "n" } },
+            ["<c-i>"] = { "toggle_ignored", mode = { "i", "n" } },
+            ["<c-m>"] = { "toggle_maximize", mode = { "i", "n" } },
+            ["<c-w>"] = { "cycle_win", mode = { "i", "n" } },
+            ["<a-p>"] = { "toggle_preview", mode = { "i", "n" } },
+            ["<c-p>"] = { "focus_preview", mode = { "i", "n" } },
+            ["<c-u>"] = { "preview_scroll_up", mode = { "i", "n" } },
+            ["<c-d>"] = { "preview_scroll_down", mode = { "i", "n" } },
+          },
+        },
+      },
+    },
     quickfile = { enabled = true },
     scope = { enabled = true },
     scroll = { enabled = true },
