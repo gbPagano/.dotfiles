@@ -46,6 +46,7 @@ alias lvim="NVIM_APPNAME=lazyvim nvim"
 export PATH=$PATH:$HOME/.local/bin:$HOME/.cargo/bin
 export CDPATH=$HOME:$HOME/projects
 export FLYCTL_INSTALL="$HOME/.fly"
+export EDITOR=nvim
 
 # beautiful prompt with startship
 eval "$(starship init zsh)"
