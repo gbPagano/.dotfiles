@@ -14,7 +14,6 @@ vim.o.signcolumn = "yes" -- Always show the sign column (used by LSP diagnostics
 vim.o.visualbell = true -- Enable visual cue instead of an audible beep for error notifications
 vim.o.winborder = "rounded" -- Use rounded borders for floating windows and popups
 vim.o.cmdheight = 0 -- Command line height
-vim.o.lazyredraw = true -- Don't redraw during macros
 vim.o.synmaxcol = 300 -- Syntax highlighting limit
 vim.o.showmode = false -- Dont show mode since we have a statusline
 
