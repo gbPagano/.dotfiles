@@ -1,0 +1,30 @@
+[user]
+  name = {{git.name}}
+  email = {{git.email}}
+  signingkey = {{git.signingkey}}
+[commit]
+  gpgsign = {{git.gpgsign}}
+[gpg]
+  program = gpg
+[init]
+  defaultBranch = main
+[filter "lfs"]
+  process = git-lfs filter-process
+  required = true
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+
+[core]
+    pager = delta
+[interactive]
+    diffFilter = delta --color-only
+[delta]
+    syntax-theme = "Catppuccin Mocha"
+    features = catppuccin-mocha
+    navigate = true
+    line-numbers = true
+    hyperlinks = true
+[merge]
+    conflictStyle = zdiff3
+[include]
+	path = ~/.dotfiles/git/catppuccin.gitconfig

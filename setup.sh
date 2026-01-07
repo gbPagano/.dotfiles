@@ -79,7 +79,9 @@ run paru -S --needed \
   zoxide \
   fzf \
   chafa \
-  fd
+  fd \
+  ripgrep \
+  git-delta
 
 echo "Setting Zsh as default shell"
 run chsh -s /bin/zsh $USER
