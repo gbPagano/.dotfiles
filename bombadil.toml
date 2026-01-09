@@ -11,3 +11,4 @@ starship = { source = "terminal/starship.toml", target = ".config/starship.toml"
 neovim = { source = "nvim", target = ".config/nvim" }
 git = { source = "git/gitconfig", target = ".gitconfig" }
 dms = { source = "dms/settings.json", target = ".config/DankMaterialShell/settings.json" }
+lazygit = { source = "git/lazygit", target = ".config/lazygit" }
