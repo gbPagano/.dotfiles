@@ -14,8 +14,17 @@ return {
       ["<C-e>"] = { "hide", "fallback" },
       ["<C-y>"] = { "select_and_accept", "fallback" },
       ["<CR>"] = { "accept", "fallback" },
-
-      ["<Tab>"] = { "show_and_insert_or_accept_single", "snippet_forward", "select_next", "fallback" },
+      ["<Tab>"] = {
+        "snippet_forward",
+        function(cmp)
+          if cmp.snippet_active() then
+            return cmp.show_and_insert_or_accept_single()
+          end
+        end,
+        "select_next",
+        "fallback",
+      },
+      -- ["<Tab>"] = { "snippet_forward", "show_and_insert_or_accept_single", "select_next", "fallback" },
       ["<S-Tab>"] = { "snippet_backward", "select_prev", "fallback" },
 
       ["<Up>"] = { "select_prev", "fallback" },
@@ -34,6 +43,12 @@ return {
     },
 
     completion = {
+      accept = {
+        -- experimental auto-brackets support
+        auto_brackets = {
+          enabled = true,
+        },
+      },
       documentation = { auto_show = true },
       ghost_text = { enabled = true },
       list = {
