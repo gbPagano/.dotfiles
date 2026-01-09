@@ -16,6 +16,7 @@ vim.o.winborder = "rounded" -- Use rounded borders for floating windows and popu
 vim.o.cmdheight = 0 -- Command line height
 vim.o.synmaxcol = 300 -- Syntax highlighting limit
 vim.o.showmode = false -- Dont show mode since we have a statusline
+vim.o.laststatus = 3 -- Global statusline instead of one per window
 
 -- Identation
 vim.o.expandtab = true -- Insert spaces instead of a real TAB character (\t)

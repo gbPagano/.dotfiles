@@ -33,6 +33,7 @@ return {
     opts = {
       library = {
         { path = "snacks.nvim", words = { "Snacks" } },
+        { path = "luvit-meta/library", words = { "vim%.uv" } },
       },
     },
   },
