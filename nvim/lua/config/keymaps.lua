@@ -114,3 +114,27 @@ if vim.lsp.inlay_hint then
   Snacks.toggle.inlay_hints():map("<leader>th")
 end
 -- stylua: ignore end
+
+-- LSP
+Snacks.toggle({
+  name = "LSP Virtual Lines",
+  get = function()
+    local cfg = vim.diagnostic.config()
+    return cfg and cfg.virtual_lines == true or (cfg ~= nil and type(cfg.virtual_lines) == "table")
+  end,
+  set = function(state)
+    if state then
+      vim.diagnostic.config({
+        virtual_lines = { current_line = true },
+        virtual_text = false,
+      })
+    else
+      vim.diagnostic.config({
+        virtual_lines = false,
+        virtual_text = { prefix = "●" },
+      })
+    end
+  end,
+})
+  :map("<leader>uv")
+  :map("<leader>tv")

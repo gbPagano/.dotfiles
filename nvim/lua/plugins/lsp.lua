@@ -6,7 +6,6 @@ return {
       ensure_installed = {
         "lua_ls",
         "stylua",
-        "ruff",
         "rust_analyzer",
       },
     },
