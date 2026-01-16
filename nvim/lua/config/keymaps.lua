@@ -49,6 +49,7 @@ wk.add({
 -- File search and navigation mappings
 -- stylua: ignore start
 vim.keymap.set("n", "<leader><space>", function() Snacks.picker.smart() end, { desc = "Smart Find Files" })
+vim.keymap.set("n", "<leader>/", function() Snacks.picker.grep() end, { desc = "Grep" })
 vim.keymap.set("n", "<leader>ff", function() Snacks.picker.files() end, { desc = "Find Files" })
 vim.keymap.set("n", "<leader>fg", function() Snacks.picker.git_files() end, { desc = "Find Git Files" })
 vim.keymap.set("n", "<leader>fb", function() Snacks.picker.buffers() end, { desc = "Buffers" })
@@ -58,6 +59,7 @@ vim.keymap.set("n", "<leader>fp", function() Snacks.picker.projects() end, { des
 vim.keymap.set("n", "<leader>fr", function() Snacks.picker.recent() end, { desc = "Recent" })
 vim.keymap.set("n", "<leader>fR", function() Snacks.picker.recent({ filter = { cwd = true }}) end, { desc = "Recent (cwd)" })
 vim.keymap.set("n", "<leader>fs", function() Snacks.picker.smart() end, { desc = "Smart Find Files" })
+vim.keymap.set("n", "<leader>ft", function() Snacks.picker.grep() end, { desc = "Find Text" })
 vim.keymap.set("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
 
 vim.keymap.set("n", "<leader>e", function() Snacks.explorer() end, { desc = "File Explorer" })
