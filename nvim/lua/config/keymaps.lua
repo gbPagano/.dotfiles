@@ -33,6 +33,11 @@ vim.keymap.set({ "i", "n", "s" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape
 vim.keymap.set({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
 vim.keymap.set({ "n" }, "<C-q>", "<cmd>q<cr><esc>", { desc = "Quit File" })
 
+-- Disable command-line window and search history triggers
+vim.keymap.set("n", "q:", "<nop>")
+vim.keymap.set("n", "q/", "<nop>")
+vim.keymap.set("n", "q?", "<nop>")
+
 -- Lazy
 vim.keymap.set("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
 
