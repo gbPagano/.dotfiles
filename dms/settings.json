@@ -110,16 +110,6 @@
       "id": "audioInput",
       "enabled": true,
       "width": 50
-    },
-    {
-      "id": "nightMode",
-      "enabled": true,
-      "width": 50
-    },
-    {
-      "id": "darkMode",
-      "enabled": true,
-      "width": 50
     }
   ],
   "showWorkspaceIndex": false,
@@ -207,7 +197,7 @@
   "spotlightSectionViewModes": {},
   "appDrawerSectionViewModes": {},
   "niriOverviewOverlayEnabled": true,
-  "dankLauncherV2Size": "compact",
+  "dankLauncherV2Size": "micro",
   "dankLauncherV2BorderEnabled": false,
   "dankLauncherV2BorderThickness": 2,
   "dankLauncherV2BorderColor": "primary",
@@ -330,7 +320,7 @@
   "dockMaxVisibleApps": 0,
   "dockMaxVisibleRunningApps": 0,
   "dockShowOverflowBadge": true,
-  "notificationOverlayEnabled": false,
+  "notificationOverlayEnabled": true,
   "notificationPopupShadowEnabled": true,
   "notificationPopupPrivacyMode": false,
   "modalDarkenBackground": true,
@@ -362,7 +352,16 @@
   "notificationHistorySaveLow": true,
   "notificationHistorySaveNormal": true,
   "notificationHistorySaveCritical": true,
-  "notificationRules": [],
+  "notificationRules": [
+    {
+      "enabled": true,
+      "field": "appName",
+      "pattern": "",
+      "matchType": "contains",
+      "action": "default",
+      "urgency": "default"
+    }
+  ],
   "osdAlwaysShowValue": false,
   "osdPosition": 7,
   "osdVolumeEnabled": true,
@@ -375,7 +374,7 @@
   "osdPowerProfileEnabled": false,
   "osdAudioOutputEnabled": true,
   "powerActionConfirm": true,
-  "powerActionHoldDuration": 1,
+  "powerActionHoldDuration": 0.5,
   "powerMenuActions": [
     "reboot",
     "logout",
@@ -383,7 +382,7 @@
     "lock",
     "restart"
   ],
-  "powerMenuDefaultAction": "logout",
+  "powerMenuDefaultAction": "lock",
   "powerMenuGridLayout": false,
   "customPowerActionLock": "",
   "customPowerActionLogout": "",
@@ -498,10 +497,13 @@
       "fontScale": 1,
       "autoHide": true,
       "autoHideDelay": 250,
-      "openOnOverview": false,
+      "openOnOverview": true,
       "visible": true,
       "popupGapsAuto": true,
-      "popupGapsManual": 4
+      "popupGapsManual": 4,
+      "showOnWindowsOpen": true,
+      "clickThrough": false,
+      "shadowIntensity": 0
     }
   ],
   "desktopClockEnabled": false,
@@ -575,7 +577,11 @@
   "desktopWidgetGridSettings": {},
   "desktopWidgetInstances": [],
   "desktopWidgetGroups": [],
-  "builtInPluginSettings": {},
+  "builtInPluginSettings": {
+    "dms_settings_search": {
+      "trigger": "?"
+    }
+  },
   "clipboardEnterToPaste": false,
   "launcherPluginVisibility": {},
   "launcherPluginOrder": [],
