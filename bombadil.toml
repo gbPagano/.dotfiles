@@ -12,3 +12,4 @@ neovim = { source = "nvim", target = ".config/nvim" }
 git = { source = "git/gitconfig", target = ".gitconfig" }
 dms = { source = "dms/settings.json", target = ".config/DankMaterialShell/settings.json" }
 lazygit = { source = "git/lazygit", target = ".config/lazygit" }
+niri = { source = "niri", target = ".config/niri" }

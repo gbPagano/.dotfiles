@@ -1,0 +1,56 @@
+prefer-no-csd
+
+layout {
+    gaps 6
+    center-focused-column "never"
+    always-center-single-column
+    empty-workspace-above-first
+    background-color "transparent"
+
+    preset-column-widths {
+        proportion 0.33333
+        proportion 0.5
+        proportion 0.66667
+        proportion 1.0
+    }
+
+    preset-window-heights {
+        proportion 0.33333
+        proportion 0.5
+        proportion 0.66667
+        proportion 1.0
+    }
+
+    default-column-width { proportion 0.5; }
+
+    focus-ring {
+        off
+    }
+
+    border {
+        on
+
+        width 2
+
+        active-color "#89b4fa"
+        inactive-color "#45475a"
+
+        // Color of the border around windows that request your attention.
+        urgent-color "#f38ba8"
+    }
+
+    shadow {
+        off
+    }
+}
+
+layer-rule {
+    match namespace="^dms:blurwallpaper$"
+    place-within-backdrop true
+}
+
+// Enable rounded corners for all windows.
+window-rule {
+    geometry-corner-radius 10
+    clip-to-geometry true
+}

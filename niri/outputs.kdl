@@ -1,0 +1,25 @@
+// You can configure outputs by their name, which you can find
+// by running `niri msg outputs` while inside a niri instance.
+output "LG Electronics LG ULTRAGEAR 0x000564C3" {
+    focus-at-startup
+
+    variable-refresh-rate
+    mode "1920x1080@143.981"
+    scale 1.0
+
+    position x=0 y=0
+}
+
+output "eDP-1" {
+    off
+}
+
+output "PNP(AOC) 24G4 12VOAXA001579" {
+    variable-refresh-rate
+    mode "1920x1080@180.003"
+    scale 1.0
+
+    transform "270"
+
+    position x=1920 y=-220
+}
