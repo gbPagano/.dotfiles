@@ -26,3 +26,4 @@ gui:
 git:
   pagers:
     - pager: delta --dark --paging=never
+    - pager: delta --dark --paging=never -s

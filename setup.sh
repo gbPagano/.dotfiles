@@ -69,6 +69,11 @@ echo "Installing starship - shell prompt"
 echo "Installing zoxide - smarter cd command"
 echo "Installing chafa - terminal image viewer"
 echo "Installing fd - modern find replacement"
+echo "Installing ripgrep - faster grep replacement"
+echo "Installing git-delta - syntax-highlighting pager for git"
+echo "Installing catppuccin-cursors-mocha - mocha flavor of catppuccin cursors"
+echo "Installing niri - scrollable-tiling wayland compositor"
+echo "Installing dms-shell-bin - shell/UI components for the dms environment"
 run paru -S --needed \
   zsh \
   wezterm \
@@ -81,7 +86,10 @@ run paru -S --needed \
   chafa \
   fd \
   ripgrep \
-  git-delta
+  git-delta \
+  catppuccin-cursors-mocha \
+  niri \
+  dms-shell-bin
 
 echo "Setting Zsh as default shell"
 run chsh -s /bin/zsh $USER
