@@ -58,4 +58,5 @@ eval "$(starship init zsh)"
 source "$HOME/.config/fzf/fzf.sh"
 
 # zoxide init
+export _ZO_DOCTOR=0
 eval "$(zoxide init --cmd cd zsh)"
