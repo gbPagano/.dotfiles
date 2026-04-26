@@ -15,4 +15,13 @@ config.max_fps = 144
 config.enable_wayland = true
 config.window_close_confirmation = "NeverPrompt"
 
+config.keys = {
+	-- Mapeia Shift + Enter para enviar um Linefeed puro (nova linha)
+	{
+		key = "Enter",
+		mods = "SHIFT",
+		action = wezterm.action.SendString("\x0a"),
+	},
+}
+
 return config
