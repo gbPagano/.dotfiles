@@ -1,7 +1,7 @@
 binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
-    Mod+T hotkey-overlay-title="Open a Terminal" { spawn "wezterm"; }
+    Mod+T hotkey-overlay-title="Open a Terminal" { spawn "ghostty" "+new-window"; }
     Mod+S hotkey-overlay-title="Open Launcher" { spawn "dms" "ipc" "call" "launcher" "toggle"; }
     Mod+B hotkey-overlay-title="Open Browser" { spawn "firefox"; }
     Mod+E hotkey-overlay-title="Open File Explorer" { spawn "nautilus" "-w"; }
