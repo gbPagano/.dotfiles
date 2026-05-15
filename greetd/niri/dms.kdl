@@ -1,0 +1,45 @@
+input {
+    keyboard {
+        xkb {
+            layout "us"
+            variant "altgr-intl"
+        }
+    }
+    touchpad {
+        tap
+        natural-scroll
+    }
+    warp-mouse-to-focus
+    focus-follows-mouse max-scroll-amount="20%"
+    mod-key "Super"
+    tablet {
+        map-to-output "LG Electronics LG ULTRAGEAR 0x000564C3"
+        left-handed
+    }
+}
+
+output "LG Electronics LG ULTRAGEAR 0x000564C3" {
+    focus-at-startup
+    variable-refresh-rate
+    mode "1920x1080@143.981"
+    scale 1.0
+    position x=0 y=0
+}
+
+output "eDP-1"
+
+output "PNP(AOC) 24G4 12VOAXA001579" {
+    variable-refresh-rate
+    mode "1920x1080@180.003"
+    scale 1.0
+    transform "270"
+    position x=1920 y=-220
+}
+
+cursor {
+    xcursor-theme "catppuccin-mocha-dark-cursors"
+    xcursor-size 24
+    hide-when-typing
+    hide-after-inactive-ms 3000
+}
+

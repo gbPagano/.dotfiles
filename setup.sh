@@ -105,6 +105,7 @@ run paru -S --needed --noconfirm toml-bombadil
 echo "Linking dotfiles with bombadil"
 run bombadil install "${SCRIPT_DIR}"
 run bombadil link
+run sudo -E bombadil link -p system
 
 green_echo "==============================="
 green_echo "Dotfiles installation complete!"

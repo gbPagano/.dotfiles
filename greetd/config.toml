@@ -1,0 +1,10 @@
+[terminal]
+vt = 1
+
+[default_session]
+user = "greeter"
+command = "/usr/bin/dms-greeter --command niri --cache-dir /var/cache/dms-greeter -C /etc/greetd/niri/config.kdl"
+
+[initial_session]
+command = "niri-session > /dev/null 2>&1"
+user = {{system.user}}

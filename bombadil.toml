@@ -15,3 +15,6 @@ lazygit = { source = "git/lazygit", target = ".config/lazygit" }
 niri = { source = "niri", target = ".config/niri" }
 ghostty = { source = "terminal/ghostty", target = ".config/ghostty" }
 paru = { source = "paru/paru.conf", target = ".config/paru/paru.conf" }
+
+[profiles.system.dots]
+greetd = { source = "greetd", target = "/etc/greetd" }
