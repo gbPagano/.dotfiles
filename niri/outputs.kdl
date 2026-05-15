@@ -11,7 +11,7 @@ output "LG Electronics LG ULTRAGEAR 0x000564C3" {
 }
 
 output "eDP-1" {
-    off
+    // off
 }
 
 output "PNP(AOC) 24G4 12VOAXA001579" {
