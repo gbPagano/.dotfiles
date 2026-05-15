@@ -4,7 +4,7 @@ return {
   opts = {
     formatters_by_ft = {
       lua = { "stylua" },
-      python = { "isort", "black" },
+      python = { "isort", "ruff_fix", "ruff_format" },
       rust = { "rustfmt" },
     },
     format_on_save = {
@@ -15,7 +15,7 @@ return {
   },
   keys = {
     {
-      "<leader>gf",
+      "<leader>cf",
       function()
         require("conform").format({
           lsp_format = "fallback",
