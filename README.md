@@ -10,8 +10,12 @@ cd .dotfiles
 ./setup.sh
 ```
 
-> [!WARNING]  
-> Personal information is stored in vars.toml. Make sure to update this file with your own details before linking configurations.
+> [!IMPORTANT]
+> Before linking, create your `vars.toml` from the example:
+> ```sh
+> cp example-vars.toml vars.toml
+> ```
+> Edit `vars.toml` with your personal details. This file is not tracked by git.
 
 ## Updates
 
