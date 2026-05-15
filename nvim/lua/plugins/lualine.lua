@@ -7,7 +7,7 @@ return {
   },
   opts = {
     options = {
-      theme = "catppuccin",
+      theme = "catppuccin-mocha",
       globalstatus = true,
       disabled_filetypes = { statusline = { "snacks_dashboard" } },
     },

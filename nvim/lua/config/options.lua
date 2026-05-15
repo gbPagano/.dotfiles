@@ -15,6 +15,8 @@ vim.o.visualbell = true -- Enable visual cue instead of an audible beep for erro
 vim.o.winborder = "rounded" -- Use rounded borders for floating windows and popups
 vim.o.cmdheight = 0 -- Command line height
 vim.o.synmaxcol = 300 -- Syntax highlighting limit
+vim.o.foldlevel = 99 -- Start with all folds open
+vim.o.foldlevelstart = 99 -- New buffers start with all folds open
 vim.o.showmode = false -- Dont show mode since we have a statusline
 vim.o.laststatus = 3 -- Global statusline instead of one per window
 
