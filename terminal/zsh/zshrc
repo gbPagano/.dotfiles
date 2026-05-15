@@ -39,7 +39,6 @@ alias icat="kitty +kitten icat"
 alias ls="lsd"
 alias tree="lsd --tree --depth 2"
 alias cdtmp="cd $(mktemp -d)"
-alias paru="paru --bottomup --skipreview"
 alias lvim="NVIM_APPNAME=lazyvim nvim"
 rgd() {
     rg --json -C 2 "$@" | delta

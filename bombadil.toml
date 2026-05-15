@@ -14,3 +14,4 @@ dms = { source = "dms/settings.json", target = ".config/DankMaterialShell/settin
 lazygit = { source = "git/lazygit", target = ".config/lazygit" }
 niri = { source = "niri", target = ".config/niri" }
 ghostty = { source = "terminal/ghostty", target = ".config/ghostty" }
+paru = { source = "paru/paru.conf", target = ".config/paru/paru.conf" }
