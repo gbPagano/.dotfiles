@@ -4,14 +4,14 @@ dotfiles_dir = ".dotfiles"
 vars = ["vars.toml"]
 
 [settings.dots]
-wezterm = { source = "terminal/wezterm", target = ".config/wezterm" }
-fzf = { source = "terminal/fzf", target = ".config/fzf" }
-zsh = { source = "terminal/zsh/zshrc", target = ".zshrc" }
-starship = { source = "terminal/starship.toml", target = ".config/starship.toml" }
-neovim = { source = "nvim", target = ".config/nvim" }
+wezterm = { source = "terminal/wezterm", target = ".config/wezterm", direct = true }
+fzf = { source = "terminal/fzf", target = ".config/fzf", direct = true }
+zsh = { source = "terminal/zsh/zshrc", target = ".zshrc", direct = true }
+starship = { source = "terminal/starship.toml", target = ".config/starship.toml", direct = true }
+neovim = { source = "nvim", target = ".config/nvim", direct = true }
 git = { source = "git/gitconfig", target = ".gitconfig" }
-dms = { source = "dms/settings.json", target = ".config/DankMaterialShell/settings.json" }
-lazygit = { source = "git/lazygit", target = ".config/lazygit" }
-niri = { source = "niri", target = ".config/niri" }
-ghostty = { source = "terminal/ghostty", target = ".config/ghostty" }
-paru = { source = "paru/paru.conf", target = ".config/paru/paru.conf" }
+dms = { source = "dms/settings.json", target = ".config/DankMaterialShell/settings.json", direct = true }
+lazygit = { source = "git/lazygit", target = ".config/lazygit", direct = true }
+niri = { source = "niri", target = ".config/niri", direct = true }
+ghostty = { source = "terminal/ghostty", target = ".config/ghostty", direct = true }
+paru = { source = "paru/paru.conf", target = ".config/paru/paru.conf", direct = true }
