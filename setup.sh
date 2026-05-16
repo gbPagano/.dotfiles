@@ -25,7 +25,7 @@ if ! command -v paru &>/dev/null; then
   TEMP_DIR=$(mktemp -d)
   echo "Created temporary directory: ${TEMP_DIR}"
 
-  run git clone https://aur.archlinux.org/paru-bin.git "${TEMP_DIR}/paru-bin"
+  run git clone https://aur.archlinux.org/paru.git "${TEMP_DIR}/paru"
 
   run cd "${TEMP_DIR}/paru-bin"
   run makepkg -si --noconfirm
