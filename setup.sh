@@ -74,6 +74,9 @@ echo "Installing git-delta - syntax-highlighting pager for git"
 echo "Installing catppuccin-cursors-mocha - mocha flavor of catppuccin cursors"
 echo "Installing niri - scrollable-tiling wayland compositor"
 echo "Installing dms-shell-bin - shell/UI components for the dms environment"
+echo "Installing plymouth - graphical boot splash screen"
+echo "Installing plymouth-theme-abstract-ring-git - abstract ring theme for plymouth"
+echo "Installing greetd - minimal login manager daemon"
 run paru -S --needed \
   zsh \
   wezterm \
@@ -89,7 +92,10 @@ run paru -S --needed \
   git-delta \
   catppuccin-cursors-mocha \
   niri \
-  dms-shell-bin
+  dms-shell-bin \
+  plymouth \
+  plymouth-theme-abstract-ring-git \
+  greetd
 
 echo "Setting Zsh as default shell"
 run chsh -s /bin/zsh $USER
@@ -105,7 +111,27 @@ run paru -S --needed --noconfirm toml-bombadil
 echo "Linking dotfiles with bombadil"
 run bombadil install "${SCRIPT_DIR}"
 run bombadil link
-run sudo -E bombadil link -p system
+
+blue_echo "============================"
+blue_echo "Setting up system-level config"
+blue_echo "============================"
+
+DOTFILES_ABS=$(realpath "${SCRIPT_DIR}")
+
+echo "Linking greetd config to /etc/greetd"
+run sudo ln -sfn "${DOTFILES_ABS}/system/greetd" /etc/greetd
+
+echo "Installing plymouth daemon config (theme = abstract_ring)"
+run sudo install -Dm644 "${DOTFILES_ABS}/system/plymouth/plymouthd.conf" /etc/plymouth/plymouthd.conf
+
+echo "Installing systemd-boot loader.conf (timeout 0, editor disabled)"
+run sudo install -Dm644 "${DOTFILES_ABS}/system/systemd-boot/loader.conf" /boot/loader/loader.conf
+
+echo "Injecting plymouth hook into /etc/mkinitcpio.conf (if missing)"
+sudo bash -c "grep -q 'HOOKS=.*plymouth' /etc/mkinitcpio.conf || { sed -i '/^HOOKS=/ s/udev/udev plymouth/' /etc/mkinitcpio.conf && mkinitcpio -P; }"
+
+echo "Appending plymouth params to /etc/kernel/cmdline (if missing)"
+sudo bash -c "grep -q 'quiet splash' /etc/kernel/cmdline || { sed -i 's|\$| quiet splash loglevel=3 rd.udev.log_level=3 vt.global_cursor_default=0|' /etc/kernel/cmdline && mkinitcpio -P; }"
 
 green_echo "==============================="
 green_echo "Dotfiles installation complete!"
