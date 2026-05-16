@@ -118,8 +118,11 @@ blue_echo "============================"
 
 DOTFILES_ABS=$(realpath "${SCRIPT_DIR}")
 
-echo "Linking greetd config to /etc/greetd"
-run sudo ln -sfn "${DOTFILES_ABS}/system/greetd" /etc/greetd
+echo "Installing greetd config to /etc/greetd"
+run sudo mkdir -p /etc/greetd
+run sudo ln -sfn "${DOTFILES_ABS}/system/greetd/niri" /etc/greetd/niri
+sed "s/{{system.user}}/${USER}/g" "${DOTFILES_ABS}/system/greetd/config.toml" \
+  | sudo install -Dm644 /dev/stdin /etc/greetd/config.toml
 
 echo "Installing plymouth daemon config (theme = abstract_ring)"
 run sudo install -Dm644 "${DOTFILES_ABS}/system/plymouth/plymouthd.conf" /etc/plymouth/plymouthd.conf
