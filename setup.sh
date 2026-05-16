@@ -92,7 +92,7 @@ run paru -S --needed \
   git-delta \
   catppuccin-cursors-mocha \
   niri \
-  dms-shell-bin \
+  dms-shell-niri \
   plymouth \
   plymouth-theme-abstract-ring-git \
   greetd
