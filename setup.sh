@@ -71,12 +71,6 @@ echo "Installing chafa - terminal image viewer"
 echo "Installing fd - modern find replacement"
 echo "Installing ripgrep - faster grep replacement"
 echo "Installing git-delta - syntax-highlighting pager for git"
-echo "Installing catppuccin-cursors-mocha - mocha flavor of catppuccin cursors"
-echo "Installing niri - scrollable-tiling wayland compositor"
-echo "Installing dms-shell-bin - shell/UI components for the dms environment"
-echo "Installing plymouth - graphical boot splash screen"
-echo "Installing plymouth-theme-abstract-ring-git - abstract ring theme for plymouth"
-echo "Installing greetd - minimal login manager daemon"
 echo "Installing Jetbrains Mono - nerd font"
 run paru -S --needed \
   zsh \
@@ -92,11 +86,6 @@ run paru -S --needed \
   ripgrep \
   git-delta \
   catppuccin-cursors-mocha \
-  niri \
-  dms-shell-niri \
-  plymouth \
-  plymouth-theme-abstract-ring-git \
-  greetd \ 
   ttf-jetbrains-mono-nerd
 
 echo "Setting Zsh as default shell"
@@ -104,19 +93,23 @@ run chsh -s /bin/zsh $USER
 
 echo "Terminal environment setup complete!"
 
-blue_echo "========================================"
-blue_echo "Installing toml-bombadil dotfile manager"
-blue_echo "========================================"
-
-run paru -S --needed --noconfirm toml-bombadil
-
-echo "Linking dotfiles with bombadil"
-run bombadil install "${SCRIPT_DIR}"
-run bombadil link
-
-blue_echo "============================"
+blue_echo "=============================="
 blue_echo "Setting up system-level config"
-blue_echo "============================"
+blue_echo "=============================="
+
+echo "Installing niri - scrollable-tiling wayland compositor"
+echo "Installing catppuccin-cursors-mocha - mocha flavor of catppuccin cursors"
+echo "Installing dms-shell-bin - shell/UI components for the dms environment"
+echo "Installing plymouth - graphical boot splash screen"
+echo "Installing plymouth-theme-abstract-ring-git - abstract ring theme for plymouth"
+echo "Installing greetd - minimal login manager daemon"
+run paru -S --needed \
+  niri \
+  catppuccin-cursors-mocha \
+  dms-shell-niri \
+  plymouth \
+  plymouth-theme-abstract-ring-git \
+  greetd
 
 DOTFILES_ABS=$(realpath "${SCRIPT_DIR}")
 
@@ -137,6 +130,16 @@ sudo bash -c "grep -q 'HOOKS=.*plymouth' /etc/mkinitcpio.conf || { sed -i '/^HOO
 
 echo "Appending plymouth params to /etc/kernel/cmdline (if missing)"
 sudo bash -c "grep -q 'quiet splash' /etc/kernel/cmdline || { sed -i 's|\$| quiet splash loglevel=3 rd.udev.log_level=3 vt.global_cursor_default=0 systemd.show_status=false|' /etc/kernel/cmdline && sudo mkinitcpio -P; }"
+
+blue_echo "========================================"
+blue_echo "Installing toml-bombadil dotfile manager"
+blue_echo "========================================"
+
+run paru -S --needed --noconfirm toml-bombadil
+
+echo "Linking dotfiles with bombadil"
+run bombadil install "${SCRIPT_DIR}"
+run bombadil link -f
 
 green_echo "==============================="
 green_echo "Dotfiles installation complete!"
