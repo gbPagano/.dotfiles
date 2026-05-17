@@ -77,6 +77,7 @@ echo "Installing dms-shell-bin - shell/UI components for the dms environment"
 echo "Installing plymouth - graphical boot splash screen"
 echo "Installing plymouth-theme-abstract-ring-git - abstract ring theme for plymouth"
 echo "Installing greetd - minimal login manager daemon"
+echo "Installing Jetbrains Mono - nerd font"
 run paru -S --needed \
   zsh \
   wezterm \
@@ -95,7 +96,8 @@ run paru -S --needed \
   dms-shell-niri \
   plymouth \
   plymouth-theme-abstract-ring-git \
-  greetd
+  greetd \ 
+  ttf-jetbrains-mono-nerd
 
 echo "Setting Zsh as default shell"
 run chsh -s /bin/zsh $USER
