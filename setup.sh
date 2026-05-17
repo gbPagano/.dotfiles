@@ -134,7 +134,7 @@ echo "Injecting plymouth hook into /etc/mkinitcpio.conf (if missing)"
 sudo bash -c "grep -q 'HOOKS=.*plymouth' /etc/mkinitcpio.conf || { sed -i '/^HOOKS=/ s/udev/udev plymouth/' /etc/mkinitcpio.conf && mkinitcpio -P; }"
 
 echo "Appending plymouth params to /etc/kernel/cmdline (if missing)"
-sudo bash -c "grep -q 'quiet splash' /etc/kernel/cmdline || { sed -i 's|\$| quiet splash loglevel=3 rd.udev.log_level=3 vt.global_cursor_default=0|' /etc/kernel/cmdline && mkinitcpio -P; }"
+sudo bash -c "grep -q 'quiet splash' /etc/kernel/cmdline || { sed -i 's|\$| quiet splash loglevel=3 rd.udev.log_level=3 vt.global_cursor_default=0 systemd.show_status=false|' /etc/kernel/cmdline && sudo mkinitcpio -P; }"
 
 green_echo "==============================="
 green_echo "Dotfiles installation complete!"
