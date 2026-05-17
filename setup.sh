@@ -27,7 +27,7 @@ if ! command -v paru &>/dev/null; then
 
   run git clone https://aur.archlinux.org/paru.git "${TEMP_DIR}/paru"
 
-  run cd "${TEMP_DIR}/paru-bin"
+  run cd "${TEMP_DIR}/paru"
   run makepkg -si --noconfirm
 
   echo "Cleaning up..."
