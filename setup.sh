@@ -99,25 +99,32 @@ blue_echo "=============================="
 
 echo "Installing niri - scrollable-tiling wayland compositor"
 echo "Installing catppuccin-cursors-mocha - mocha flavor of catppuccin cursors"
-echo "Installing dms-shell-bin - shell/UI components for the dms environment"
+echo "Installing dms-shell - Dank Material Shell desktop environment"
 echo "Installing plymouth - graphical boot splash screen"
 echo "Installing plymouth-theme-abstract-ring-git - abstract ring theme for plymouth"
 echo "Installing greetd - minimal login manager daemon"
 run paru -S --needed \
   niri \
   catppuccin-cursors-mocha \
-  dms-shell-niri \
+  dms-shell \
   plymouth \
   plymouth-theme-abstract-ring-git \
   greetd
 
 DOTFILES_ABS=$(realpath "${SCRIPT_DIR}")
 
-echo "Installing greetd config to /etc/greetd"
+echo "Enabling dms user service"
+run systemctl --user enable dms.service
+
+echo "Installing greetd config to /etc/greetd and enabling service"
 run sudo mkdir -p /etc/greetd
 run sudo ln -sfn "${DOTFILES_ABS}/system/greetd/niri" /etc/greetd/niri
 sed "s/{{system.user}}/${USER}/g" "${DOTFILES_ABS}/system/greetd/config.toml" \
   | sudo install -Dm644 /dev/stdin /etc/greetd/config.toml
+run sudo systemctl enable greetd
+
+echo "Silencing niri-session logs for a silent boot"
+run sudo sed -i 's|^Exec=.*|Exec=niri-session > /dev/null 2>\&1|' /usr/share/wayland-sessions/niri.desktop
 
 echo "Installing plymouth daemon config (theme = abstract_ring)"
 run sudo install -Dm644 "${DOTFILES_ABS}/system/plymouth/plymouthd.conf" /etc/plymouth/plymouthd.conf
