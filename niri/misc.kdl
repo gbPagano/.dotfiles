@@ -1,4 +1,3 @@
-spawn-sh-at-startup "for i in $(seq 1 50); do dms ipc call lock lock && break; sleep 0.2; done"
 spawn-at-startup "bombadil" "watch"
 
 screenshot-path "~/Pictures/Screenshots/%Y%m%d-%H%M%S.png"

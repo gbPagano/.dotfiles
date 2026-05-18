@@ -3,4 +3,4 @@ vt = 1
 
 [default_session]
 user = "greeter"
-command = "/usr/bin/dms-greeter --command niri --cache-dir /var/cache/dms-greeter -C /etc/greetd/niri/config.kdl"
+command = "tuigreet"

@@ -103,13 +103,15 @@ echo "Installing dms-shell - Dank Material Shell desktop environment"
 echo "Installing plymouth - graphical boot splash screen"
 echo "Installing plymouth-theme-abstract-ring-git - abstract ring theme for plymouth"
 echo "Installing greetd - minimal login manager daemon"
+echo "Installing greetd-tuigreet-fork-bin - TUI greeter for greetd"
 run paru -S --needed \
   niri \
   catppuccin-cursors-mocha \
   dms-shell \
   plymouth \
   plymouth-theme-abstract-ring-git \
-  greetd
+  greetd \
+  greetd-tuigreet-fork-bin
 
 DOTFILES_ABS=$(realpath "${SCRIPT_DIR}")
 
@@ -118,9 +120,11 @@ run systemctl --user enable dms.service
 
 echo "Installing greetd config to /etc/greetd and enabling service"
 run sudo mkdir -p /etc/greetd
-run sudo ln -sfn "${DOTFILES_ABS}/system/greetd/niri" /etc/greetd/niri
-sed "s/{{system.user}}/${USER}/g" "${DOTFILES_ABS}/system/greetd/config.toml" \
-  | sudo install -Dm644 /dev/stdin /etc/greetd/config.toml
+run sudo ln -sfn "${DOTFILES_ABS}/system/greetd/config.toml" /etc/greetd/config.toml
+echo "Installing tuigreet config to /etc/tuigreet"
+run sudo mkdir -p /etc/tuigreet
+run sudo ln -sfn "${DOTFILES_ABS}/system/greetd/tuigreet/config.toml" /etc/tuigreet/config.toml
+
 run sudo systemctl enable greetd
 
 echo "Silencing niri-session logs for a silent boot"

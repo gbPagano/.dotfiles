@@ -1,0 +1,27 @@
+[display]
+show_time = true
+issue = false
+
+[layout]
+width = 60
+window_padding = 2
+container_padding = 1
+prompt_padding = 1
+
+[layout.widgets]
+time_position = "top"
+status_position = "bottom"
+
+[remember]
+username = true
+session = false
+user_session = true
+
+[session]
+sessions_dirs = ["/usr/share/wayland-sessions", "/usr/share/xsessions"]
+xsessions_dirs = []
+environments = []
+
+[terminal]
+cols = 240
+rows = 67
