@@ -103,7 +103,7 @@ echo "Installing dms-shell - Dank Material Shell desktop environment"
 echo "Installing plymouth - graphical boot splash screen"
 echo "Installing plymouth-theme-abstract-ring-git - abstract ring theme for plymouth"
 echo "Installing greetd - minimal login manager daemon"
-echo "Installing greetd-tuigreet-fork-bin - TUI greeter for greetd"
+echo "Installing greetd-tuigreet-fork - TUI greeter for greetd"
 run paru -S --needed \
   niri \
   catppuccin-cursors-mocha \
@@ -111,7 +111,7 @@ run paru -S --needed \
   plymouth \
   plymouth-theme-abstract-ring-git \
   greetd \
-  greetd-tuigreet-fork-bin
+  greetd-tuigreet-fork-git
 
 DOTFILES_ABS=$(realpath "${SCRIPT_DIR}")
 
