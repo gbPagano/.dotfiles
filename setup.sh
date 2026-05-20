@@ -125,6 +125,19 @@ echo "Installing tuigreet config to /etc/tuigreet"
 run sudo mkdir -p /etc/tuigreet
 run sudo ln -sfn "${DOTFILES_ABS}/system/greetd/tuigreet/config.toml" /etc/tuigreet/config.toml
 
+# greetd runs tuigreet as the unprivileged `greeter` user, but the config
+# installed above is a symlink into this user's home. The kernel enforces
+# traversal (x) permission on every path component, so grant `greeter` the
+# ACLs needed to follow the symlink; otherwise tuigreet silently uses defaults.
+echo "Granting greeter user access to the tuigreet config symlink target"
+run sudo setfacl -m u:greeter:x \
+  "/home/${USER}" \
+  "${DOTFILES_ABS}" \
+  "${DOTFILES_ABS}/system" \
+  "${DOTFILES_ABS}/system/greetd" \
+  "${DOTFILES_ABS}/system/greetd/tuigreet"
+run sudo setfacl -m u:greeter:r "${DOTFILES_ABS}/system/greetd/tuigreet/config.toml"
+
 run sudo systemctl enable greetd
 
 echo "Silencing niri-session logs for a silent boot"
