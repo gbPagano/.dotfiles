@@ -71,6 +71,7 @@ echo "Installing chafa - terminal image viewer"
 echo "Installing fd - modern find replacement"
 echo "Installing ripgrep - faster grep replacement"
 echo "Installing git-delta - syntax-highlighting pager for git"
+echo "Installing lazygit - terminal UI for git"
 echo "Installing Jetbrains Mono - nerd font"
 run paru -S --needed \
   zsh \
@@ -85,6 +86,7 @@ run paru -S --needed \
   fd \
   ripgrep \
   git-delta \
+  lazygit \
   catppuccin-cursors-mocha \
   ttf-jetbrains-mono-nerd
 
