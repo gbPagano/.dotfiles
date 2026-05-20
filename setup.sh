@@ -16,6 +16,7 @@ green_echo() {
 
 SCRIPT_DIR=$(dirname "$0")
 INSTALL="paru -S --needed --noconfirm --skipreview"
+NVIDIA="${NVIDIA:-true}"
 
 blue_echo "=========================="
 blue_echo "Setting up Paru AUR helper"
@@ -166,6 +167,10 @@ sudo bash -c "grep -q 'HOOKS=.*plymouth' /etc/mkinitcpio.conf || { sed -i '/^HOO
 
 echo "Appending plymouth params to /etc/kernel/cmdline (if missing)"
 sudo bash -c "grep -q 'quiet splash' /etc/kernel/cmdline || { sed -i 's|\$| quiet splash loglevel=3 rd.udev.log_level=3 vt.global_cursor_default=0 systemd.show_status=false|' /etc/kernel/cmdline && sudo mkinitcpio -P; }"
+
+if [ "${NVIDIA}" = "true" ]; then
+  source ${SCRIPT_DIR}/system/nvidia/setup.sh
+fi
 
 blue_echo "========================================"
 blue_echo "Installing toml-bombadil dotfile manager"
