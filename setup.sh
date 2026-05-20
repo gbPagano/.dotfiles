@@ -15,6 +15,7 @@ green_echo() {
 }
 
 SCRIPT_DIR=$(dirname "$0")
+INSTALL="paru -S --needed --noconfirm --skipreview"
 
 blue_echo "=========================="
 blue_echo "Setting up Paru AUR helper"
@@ -54,7 +55,7 @@ source ${SCRIPT_DIR}/kanata/setup.sh
 blue_echo "========================"
 blue_echo "Installing Neovim editor"
 blue_echo "========================"
-run paru -S --needed neovim
+run $INSTALL neovim
 
 blue_echo "==============================="
 blue_echo "Setting up terminal environment"
@@ -73,7 +74,7 @@ echo "Installing ripgrep - faster grep replacement"
 echo "Installing git-delta - syntax-highlighting pager for git"
 echo "Installing lazygit - terminal UI for git"
 echo "Installing Jetbrains Mono - nerd font"
-run paru -S --needed \
+run $INSTALL \
   zsh \
   ghostty \
   fzf \
@@ -103,15 +104,13 @@ echo "Installing niri - scrollable-tiling wayland compositor"
 echo "Installing catppuccin-cursors-mocha - mocha flavor of catppuccin cursors"
 echo "Installing dms-shell - Dank Material Shell desktop environment"
 echo "Installing plymouth - graphical boot splash screen"
-echo "Installing plymouth-theme-abstract-ring-git - abstract ring theme for plymouth"
 echo "Installing greetd - minimal login manager daemon"
 echo "Installing greetd-tuigreet-fork - TUI greeter for greetd"
-run paru -S --needed \
+run $INSTALL \
   niri \
   catppuccin-cursors-mocha \
-  dms-shell \
+  dms-shell-niri \
   plymouth \
-  plymouth-theme-abstract-ring-git \
   greetd \
   greetd-tuigreet-fork-git
 
@@ -145,6 +144,17 @@ run sudo systemctl enable greetd
 echo "Silencing niri-session logs for a silent boot"
 run sudo sed -i 's|^Exec=.*|Exec=niri-session > /dev/null 2>\&1|' /usr/share/wayland-sessions/niri.desktop
 
+# The AUR plymouth-theme-abstract-ring-git package clones the entire ~247 MB
+# adi1090x/plymouth-themes repo just to extract one 3.5 MB theme. Fetch the
+# prebuilt theme tarball from the upstream v1.0 release instead.
+echo "Installing abstract_ring plymouth theme from upstream release"
+PLYMOUTH_THEME_TMP=$(mktemp -d)
+run curl -fsSL -o "${PLYMOUTH_THEME_TMP}/abstract_ring.tar.gz" \
+  "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/abstract_ring.tar.gz"
+run sudo mkdir -p /usr/share/plymouth/themes
+run sudo tar -xzf "${PLYMOUTH_THEME_TMP}/abstract_ring.tar.gz" -C /usr/share/plymouth/themes
+run rm -rf "${PLYMOUTH_THEME_TMP}"
+
 echo "Installing plymouth daemon config (theme = abstract_ring)"
 run sudo install -Dm644 "${DOTFILES_ABS}/system/plymouth/plymouthd.conf" /etc/plymouth/plymouthd.conf
 
@@ -161,7 +171,7 @@ blue_echo "========================================"
 blue_echo "Installing toml-bombadil dotfile manager"
 blue_echo "========================================"
 
-run paru -S --needed --noconfirm toml-bombadil
+run $INSTALL toml-bombadil
 
 echo "Linking dotfiles with bombadil"
 run bombadil install "${SCRIPT_DIR}"
