@@ -93,7 +93,7 @@ run $INSTALL \
   ttf-jetbrains-mono-nerd
 
 echo "Setting Zsh as default shell"
-run chsh -s /bin/zsh $USER
+[ "$(getent passwd "$USER" | cut -d: -f7)" = "/bin/zsh" ] || run chsh -s /bin/zsh "$USER"
 
 echo "Terminal environment setup complete!"
 
