@@ -73,7 +73,6 @@
     },
     "profile_config": {
         "gfx_driver": "Nvidia (open kernel module for newer GPUs, Turing+)",
-        "greeter": "ly",
         "profile": {
             "custom_settings": {
                 "Niri": {
