@@ -61,7 +61,7 @@ blue_echo "Setting up terminal environment"
 blue_echo "==============================="
 
 echo "Installing Zsh - shell"
-echo "Installing WezTerm - terminal emulator"
+echo "Installing Ghostty - terminal emulator"
 echo "Installing fzf - fuzzy finder"
 echo "Installing bat - better cat replacement"
 echo "Installing lsd - modern ls replacement"
@@ -75,7 +75,7 @@ echo "Installing lazygit - terminal UI for git"
 echo "Installing Jetbrains Mono - nerd font"
 run paru -S --needed \
   zsh \
-  wezterm \
+  ghostty \
   fzf \
   bat \
   lsd \
