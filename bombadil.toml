@@ -4,7 +4,6 @@ dotfiles_dir = ".dotfiles"
 vars = ["vars.toml"]
 
 [settings.dots]
-wezterm = { source = "terminal/wezterm", target = ".config/wezterm", direct = true }
 fzf = { source = "terminal/fzf", target = ".config/fzf", direct = true }
 zsh = { source = "terminal/zsh/zshrc", target = ".zshrc", direct = true }
 starship = { source = "terminal/starship.toml", target = ".config/starship.toml", direct = true }
