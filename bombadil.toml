@@ -9,7 +9,7 @@ zsh = { source = "terminal/zsh/zshrc", target = ".zshrc", direct = true }
 starship = { source = "terminal/starship.toml", target = ".config/starship.toml", direct = true }
 neovim = { source = "nvim", target = ".config/nvim", direct = true }
 git = { source = "git/gitconfig", target = ".gitconfig" }
-dms = { source = "dms/settings.json", target = ".config/DankMaterialShell/settings.json", direct = true }
+dms = { source = "dms", target = ".config/DankMaterialShell", direct = true }
 lazygit = { source = "git/lazygit", target = ".config/lazygit", direct = true }
 niri = { source = "niri", target = ".config/niri", direct = true }
 ghostty = { source = "terminal/ghostty", target = ".config/ghostty", direct = true }
