@@ -1,0 +1,7 @@
+[Unit]
+Description=Unlock Pico FIDO (PIN popup on USB connect)
+StartLimitIntervalSec=0
+
+[Service]
+Type=oneshot
+ExecStart=%h/.local/bin/pico-unlock

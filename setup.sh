@@ -17,6 +17,7 @@ green_echo() {
 SCRIPT_DIR=$(dirname "$0")
 INSTALL="paru -S --needed --noconfirm --skipreview"
 NVIDIA="${NVIDIA:-true}"
+PICO_FIDO="${PICO_FIDO:-true}"
 
 blue_echo "=========================="
 blue_echo "Setting up Paru AUR helper"
@@ -144,6 +145,10 @@ run sudo setfacl -m u:greeter:x \
 run sudo setfacl -m u:greeter:r "${DOTFILES_ABS}/system/greetd/tuigreet/config.toml"
 
 run sudo systemctl enable greetd
+
+if [ "${PICO_FIDO}" = "true" ]; then
+  source ${SCRIPT_DIR}/system/pico-fido/setup.sh
+fi
 
 echo "Silencing niri-session logs for a silent boot"
 run sudo sed -i 's|^Exec=.*|Exec=niri-session > /dev/null 2>\&1|' /usr/share/wayland-sessions/niri.desktop
