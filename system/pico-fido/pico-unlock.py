@@ -65,7 +65,16 @@ def notify(msg, urgency="normal"):
 def ask_pin():
     """Password popup using the DMS text-input plugin."""
     subprocess.run(
-        ["dms", "ipc", "call", "text-input", "openPassword", TITLE, "Pico PIN", ""],
+        [
+            "dms",
+            "ipc",
+            "call",
+            "text-input",
+            "openPassword",
+            TITLE,
+            "Unlock your Pico FIDO",
+            "Enter PIN",
+        ],
         check=False,
     )
     while True:
@@ -184,7 +193,7 @@ def main():
         holder.dev.close()
 
     log("storage unlocked")
-    notify("Storage unlocked - SSH ready.")
+    notify("Storage unlocked.")
     return 0
 
 
