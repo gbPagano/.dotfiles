@@ -14,3 +14,5 @@ lazygit = { source = "git/lazygit", target = ".config/lazygit", direct = true }
 niri = { source = "niri", target = ".config/niri", direct = true }
 ghostty = { source = "terminal/ghostty", target = ".config/ghostty", direct = true }
 paru = { source = "paru/paru.conf", target = ".config/paru/paru.conf", direct = true }
+xdg = { source = "xdg/user-dirs.dirs", target = ".config/user-dirs.dirs", direct = true }
+xdg_conf = { source = "xdg/user-dirs.conf", target = ".config/user-dirs.conf", direct = true }

@@ -101,6 +101,9 @@ blue_echo "=============================="
 blue_echo "Setting up system-level config"
 blue_echo "=============================="
 
+echo "Creating XDG user directories"
+run mkdir -p ~/documents ~/downloads ~/pictures ~/projects ~/videos
+
 echo "Installing niri - scrollable-tiling wayland compositor"
 echo "Installing catppuccin-cursors-mocha - mocha flavor of catppuccin cursors"
 echo "Installing dms-shell - Dank Material Shell desktop environment"
