@@ -1,0 +1,14 @@
+{
+    "id": "textInputDialog",
+    "name": "Text Input Dialog",
+    "description": "Opens a text input popup via IPC. Use: dms ipc call text-input open [title] [header] [placeholder]",
+    "version": "1.0.0",
+    "author": "gbpagano",
+    "type": "daemon",
+    "capabilities": ["text-input-dialog"],
+    "component": "./TextInputDialogDaemon.qml",
+    "icon": "edit_note",
+    "settings": "./TextInputDialogSettings.qml",
+    "requires_dms": ">=0.1.18",
+    "permissions": ["settings_read", "settings_write", "process"]
+}
