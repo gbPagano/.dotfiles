@@ -389,6 +389,14 @@
     {
       "enabled": true,
       "field": "appName",
+      "pattern": "ghostty",
+      "matchType": "contains",
+      "action": "popup_only",
+      "urgency": "default"
+    },
+    {
+      "enabled": true,
+      "field": "appName",
       "pattern": "",
       "matchType": "contains",
       "action": "default",
