@@ -3,9 +3,9 @@
 #  - auto-unlock: a udev rule that, on plug-in, triggers a systemd user
 #    service which pops up a PIN prompt and decrypts the key's encrypted
 #    storage so SSH (touch-only) works until the next power cycle.
-#  - touch-to-sudo: registers a pam_u2f credential and wires pam_u2f into
-#    /etc/pam.d/sudo so `sudo` accepts a key touch instead of a password.
-#    The key must be unlocked (Secure Lock) for this to work, same as SSH.
+#  - sudo auth: sudo asks for the password by default; the `usudo` (u2f sudo)
+#    shell function opts a single call into a Pico FIDO touch instead, via a
+#    pam_exec marker plus pam_u2f. Needs the key unlocked, same as SSH.
 
 run() {
   echo -e "\033[1;34m$ $@\033[0m"
@@ -43,11 +43,13 @@ run ln -sfn "${PICO_DIR}/pico-unlock.service" ~/.config/systemd/user/pico-unlock
 run ln -sfn "${PICO_DIR}/pico-unlock.py" ~/.local/bin/pico-unlock
 run systemctl --user daemon-reload
 
-"Configuring touch-to-sudo (pam_u2f)"
+echo "Configuring sudo authentication"
 
 U2F_MAPPINGS="/etc/u2f_mappings"
 PAM_SUDO="/etc/pam.d/sudo"
-PAM_LINE="auth       sufficient   pam_u2f.so authfile=${U2F_MAPPINGS} cue"
+SUDO_CHECK="/usr/local/bin/u2f-sudo-check"
+PAM_EXEC_LINE="auth       [success=ignore default=1]   pam_exec.so quiet ${SUDO_CHECK}"
+PAM_U2F_LINE="auth       sufficient                   pam_u2f.so authfile=${U2F_MAPPINGS} cue"
 
 # Non-resident credential: the credential ID lives in $U2F_MAPPINGS, not on
 # the key, so it costs no resident slot. It is device-specific state, so it is
@@ -67,14 +69,19 @@ else
   fi
 fi
 
-# 'sufficient' = a key touch authenticates; otherwise it falls through to the
-# password, so a missing/locked key never locks sudo out.
-if grep -q "pam_u2f.so" "$PAM_SUDO"; then
-  echo "$PAM_SUDO already wired for pam_u2f - skipping"
-else
-  echo "Adding pam_u2f as a 'sufficient' auth method to $PAM_SUDO"
-  run sudo sed -i "/^#%PAM-1.0/a $PAM_LINE" "$PAM_SUDO"
-fi
+echo "Installing $SUDO_CHECK - pam_exec helper that opts a sudo call into u2f"
+run sudo install -m 755 "${PICO_DIR}/u2f-sudo-check" "$SUDO_CHECK"
+
+# sudo asks for the password by default. The `usudo` shell function drops a
+# one-shot marker that makes u2f-sudo-check exit 0, so pam_exec's
+# 'success=ignore' continues to pam_u2f (key touch). With no marker,
+# 'default=1' skips pam_u2f straight to the password. pam_u2f stays
+# 'sufficient', so a locked/missing key still falls back to the password.
+# Lines are deleted first so re-runs (and the control flip) stay idempotent.
+echo "Wiring pam_exec + pam_u2f into $PAM_SUDO"
+run sudo sed -i '\#pam_exec\.so.*u2f#d; /pam_u2f\.so/d' "$PAM_SUDO"
+run sudo sed -i "/^#%PAM-1.0/a $PAM_U2F_LINE" "$PAM_SUDO"
+run sudo sed -i "/^#%PAM-1.0/a $PAM_EXEC_LINE" "$PAM_SUDO"
 
 green_echo "========================="
 green_echo "Pico FIDO setup complete!"

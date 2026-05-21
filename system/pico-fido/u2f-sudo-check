@@ -1,0 +1,18 @@
+#!/bin/sh
+# pam_exec helper for /etc/pam.d/sudo.
+#
+# sudo authenticates with the password by default. To opt a single call into
+# a Pico FIDO touch, the `usudo` shell function drops a one-shot marker in the
+# caller's runtime dir before running sudo. This helper detects that marker
+# (and removes it, so it affects exactly one authentication):
+#
+#   marker present -> exit 0 -> pam_exec 'success=ignore' -> pam_u2f runs (touch)
+#   marker absent  -> exit 1 -> pam_exec 'default=1'      -> pam_u2f skipped (password)
+uid=$(id -u "$PAM_USER" 2>/dev/null)
+for marker in "/run/user/$uid/u2f-sudo" /run/user/*/u2f-sudo; do
+  if [ -e "$marker" ]; then
+    rm -f "$marker"
+    exit 0
+  fi
+done
+exit 1

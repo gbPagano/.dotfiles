@@ -44,6 +44,16 @@ rgd() {
     rg --json -C 2 "$@" | delta
 }
 
+# usudo (u2f sudo): run sudo via a Pico FIDO touch instead of the password.
+# Reuses the sudo cache, so the touch is only asked for when sudo would
+# actually need to authenticate.
+usudo() {
+    if ! sudo -nv 2>/dev/null; then
+        : > "/run/user/$(id -u)/u2f-sudo"
+    fi
+    sudo "$@"
+}
+
 # path
 export PATH=$PATH:$HOME/.local/bin:$HOME/.cargo/bin
 export CDPATH=$HOME:$HOME/projects
