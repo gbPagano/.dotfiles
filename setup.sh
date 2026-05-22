@@ -19,6 +19,15 @@ INSTALL="paru -S --needed --noconfirm --skipreview"
 NVIDIA="${NVIDIA:-true}"
 PICO_FIDO="${PICO_FIDO:-true}"
 
+blue_echo "========================="
+blue_echo "Installing Rust toolchain"
+blue_echo "========================="
+
+echo "Installing rustup - Rust toolchain manager"
+run sudo pacman -S --needed --noconfirm rustup
+echo "Setting stable as the default Rust toolchain"
+run rustup default stable
+
 blue_echo "=========================="
 blue_echo "Setting up Paru AUR helper"
 blue_echo "=========================="
