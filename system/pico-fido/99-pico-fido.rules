@@ -1,2 +1,5 @@
-# Permission and auto-unlock for Pol Henarejos Pico Key (FIDO2)
-KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="2e8a", ATTRS{idProduct}=="10fe", MODE="0666", GROUP="plugdev", TAG+="systemd", ENV{SYSTEMD_USER_WANTS}="pico-unlock.service"
+# Permission and auto-unlock for Pol Henarejos Pico Key (FIDO2).
+# uaccess grants the active local user access via ACL. GROUP= is avoided on
+# purpose: a non-system group is deprecated and aborts rule processing, which
+# would drop the systemd tag below and break the auto-unlock trigger.
+KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="2e8a", ATTRS{idProduct}=="10fe", TAG+="uaccess", TAG+="systemd", ENV{SYSTEMD_USER_WANTS}="pico-unlock.service"
