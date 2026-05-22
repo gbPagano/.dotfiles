@@ -2,3 +2,6 @@
 lazy-lock.json
 vars.toml
 niri/dms/
+dms/.changelog*
+dms/.firstlaunch
+
