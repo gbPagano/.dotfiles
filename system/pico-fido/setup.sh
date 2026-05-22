@@ -29,9 +29,10 @@ blue_echo "===================="
 
 echo "Installing libfido2 - FIDO2 lib; openssh's sk-helper uses it for SSH keys"
 echo "Installing python-fido2 - pure-Python CTAP2 lib used by the unlock script"
+echo "Installing python-cryptography - Cryptographic recipes and primitives for Python"
 echo "Installing libnotify - desktop notifications (notify-send)"
 echo "Installing pam-u2f - PAM module for touch-to-sudo authentication"
-run $INSTALL libfido2 python-fido2 libnotify pam-u2f
+run $INSTALL libfido2 python-fido2 python-cryptography libnotify pam-u2f
 
 echo "Installing Pico FIDO udev rule to /etc/udev/rules.d"
 run sudo ln -sfn "${PICO_DIR}/99-pico-fido.rules" /etc/udev/rules.d/99-pico-fido.rules
