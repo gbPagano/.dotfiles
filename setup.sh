@@ -90,7 +90,6 @@ run $INSTALL \
   ripgrep \
   git-delta \
   lazygit \
-  catppuccin-cursors-mocha \
   ttf-jetbrains-mono-nerd
 
 echo "Setting Zsh as default shell"
@@ -106,18 +105,25 @@ echo "Creating XDG user directories"
 run mkdir -p ~/documents ~/downloads ~/pictures ~/projects ~/videos
 
 echo "Installing niri - scrollable-tiling wayland compositor"
-echo "Installing catppuccin-cursors-mocha - mocha flavor of catppuccin cursors"
 echo "Installing dms-shell - Dank Material Shell desktop environment"
 echo "Installing plymouth - graphical boot splash screen"
 echo "Installing greetd - minimal login manager daemon"
 echo "Installing greetd-tuigreet-fork - TUI greeter for greetd"
+echo "Installing unzip - utility for extracting zip files"
 run $INSTALL \
   niri \
-  catppuccin-cursors-mocha \
   dms-shell-niri \
   plymouth \
   greetd \
-  greetd-tuigreet-fork-git
+  greetd-tuigreet-fork-git \
+  unzip
+
+echo "Installing catppuccin-mocha-dark-cursors"
+run mkdir -p ~/.local/share/icons
+run curl -L -s -o /tmp/catppuccin-mocha-dark-cursors.zip https://github.com/catppuccin/cursors/releases/download/v2.0.0/catppuccin-mocha-dark-cursors.zip
+run unzip -o -q /tmp/catppuccin-mocha-dark-cursors.zip -d ~/.local/share/icons
+run rm -f /tmp/catppuccin-mocha-dark-cursors.zip
+
 
 DOTFILES_ABS=$(realpath "${SCRIPT_DIR}")
 
