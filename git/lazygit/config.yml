@@ -24,6 +24,7 @@ gui:
   authorColors:
     '*': '#b4befe'
 git:
+  autoFetch: false
   pagers:
     - pager: delta --dark --paging=never
     - pager: delta --dark --paging=never -s
