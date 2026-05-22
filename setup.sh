@@ -110,13 +110,15 @@ echo "Installing plymouth - graphical boot splash screen"
 echo "Installing greetd - minimal login manager daemon"
 echo "Installing greetd-tuigreet-fork - TUI greeter for greetd"
 echo "Installing unzip - utility for extracting zip files"
+echo "Installing usbutils - USB device listing utilities (lsusb)"
 run $INSTALL \
   niri \
   dms-shell-niri \
   plymouth \
   greetd \
   greetd-tuigreet-fork-git \
-  unzip
+  unzip \
+  usbutils
 
 echo "Installing catppuccin-mocha-dark-cursors"
 run mkdir -p ~/.local/share/icons
