@@ -84,6 +84,7 @@ echo "Installing fd - modern find replacement"
 echo "Installing ripgrep - faster grep replacement"
 echo "Installing git-delta - syntax-highlighting pager for git"
 echo "Installing lazygit - terminal UI for git"
+echo "Installing btop - terminal resource monitor"
 echo "Installing Jetbrains Mono - nerd font"
 run $INSTALL \
   zsh \
@@ -99,6 +100,7 @@ run $INSTALL \
   ripgrep \
   git-delta \
   lazygit \
+  btop \
   ttf-jetbrains-mono-nerd
 
 echo "Setting Zsh as default shell"
