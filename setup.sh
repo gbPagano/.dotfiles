@@ -124,6 +124,7 @@ echo "Installing greetd - minimal login manager daemon"
 echo "Installing greetd-tuigreet-fork - TUI greeter for greetd"
 echo "Installing unzip - utility for extracting zip files"
 echo "Installing usbutils - USB device listing utilities (lsusb)"
+echo "Installing Papirus icon theme"
 run $INSTALL \
   niri \
   dms-shell-niri \
@@ -131,7 +132,30 @@ run $INSTALL \
   greetd \
   greetd-tuigreet-fork-git \
   unzip \
-  usbutils
+  usbutils \
+  papirus-icon-theme
+
+# The AUR colloid-catppuccin-gtk-theme-git clones the full git history (~50 MB)
+# and compiles all SASS variants. Fetch just the release tarball and install
+# only the dark+catppuccin variant we actually use.
+echo "Installing Colloid Catppuccin GTK theme from latest GitHub release"
+run $INSTALL sassc
+COLLOID_TMP=$(mktemp -d)
+COLLOID_TAG=$(curl -fsSL "https://api.github.com/repos/vinceliuice/Colloid-gtk-theme/releases/latest" \
+  | grep '"tag_name"' | head -1 | cut -d'"' -f4)
+run curl -fsSL -o "${COLLOID_TMP}/colloid.tar.gz" \
+  "https://github.com/vinceliuice/Colloid-gtk-theme/archive/refs/tags/${COLLOID_TAG}.tar.gz"
+run tar -xzf "${COLLOID_TMP}/colloid.tar.gz" -C "${COLLOID_TMP}"
+run sudo bash "${COLLOID_TMP}/Colloid-gtk-theme-${COLLOID_TAG}/install.sh" \
+  --color dark --tweaks catppuccin
+run rm -rf "${COLLOID_TMP}"
+
+echo "Setting GTK_THEME in /etc/environment (GTK4 apps)"
+sudo bash -c "grep -q 'GTK_THEME' /etc/environment || echo 'GTK_THEME=Colloid-Dark-Catppuccin' >> /etc/environment"
+
+echo "Applying GTK icon theme and color scheme via gsettings"
+run gsettings set org.gnome.desktop.interface icon-theme "Papirus-Dark"
+run gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"
 
 echo "Installing catppuccin-mocha-dark-cursors"
 run mkdir -p ~/.local/share/icons
