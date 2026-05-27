@@ -1,5 +1,20 @@
 {
   "textInputDialog": {
     "enabled": true
+  },
+  "netbirdStatus": {
+    "enabled": true,
+    "showIpAddress": false,
+    "colorizeIcon": true,
+    "hideDisconnected": true,
+    "showPing": true,
+    "pingCount": 14,
+    "adminConsoleUrl": "https://netbird.gbpagano.dev/",
+    "lastInstalled": true,
+    "lastRunning": false,
+    "lastIp": "",
+    "lastFqdn": "",
+    "lastPeerCount": 0,
+    "lastPeerConnected": 0
   }
 }

@@ -121,16 +121,21 @@
       "width": 50
     },
     {
-      "id": "battery",
+      "id": "plugin_netbirdStatus",
       "enabled": true,
       "width": 50
     },
     {
       "id": "diskUsage",
       "enabled": true,
-      "width": 50,
+      "width": 25,
       "instanceId": "mp7ea6ofk1mmp5mz5nz286rxk2924vx",
       "mountPath": "/"
+    },
+    {
+      "id": "battery",
+      "enabled": true,
+      "width": 25
     }
   ],
   "showWorkspaceIndex": false,

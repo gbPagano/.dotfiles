@@ -125,6 +125,7 @@ echo "Installing greetd-tuigreet-fork - TUI greeter for greetd"
 echo "Installing unzip - utility for extracting zip files"
 echo "Installing usbutils - USB device listing utilities (lsusb)"
 echo "Installing Papirus icon theme"
+echo "Installing netbird - WireGuard-based mesh VPN client"
 run $INSTALL \
   niri \
   dms-shell-niri \
@@ -133,7 +134,8 @@ run $INSTALL \
   greetd-tuigreet-fork-git \
   unzip \
   usbutils \
-  papirus-icon-theme
+  papirus-icon-theme \
+  netbird-bin
 
 # The AUR colloid-catppuccin-gtk-theme-git clones the full git history (~50 MB)
 # and compiles all SASS variants. Fetch just the release tarball and install
@@ -163,6 +165,8 @@ run curl -L -s -o /tmp/catppuccin-mocha-dark-cursors.zip https://github.com/catp
 run unzip -o -q /tmp/catppuccin-mocha-dark-cursors.zip -d ~/.local/share/icons
 run rm -f /tmp/catppuccin-mocha-dark-cursors.zip
 
+echo "Installing netbirdStatus plugin from DMS registry"
+run dms plugins install netbirdStatus
 
 DOTFILES_ABS=$(realpath "${SCRIPT_DIR}")
 

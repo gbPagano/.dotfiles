@@ -4,4 +4,7 @@ vars.toml
 niri/dms/
 dms/.changelog*
 dms/.firstlaunch
+dms/plugins/.repos/
+dms/plugins/netbirdStatus
+dms/plugins/netbirdStatus.meta
 
