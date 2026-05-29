@@ -129,8 +129,9 @@
       "id": "diskUsage",
       "enabled": true,
       "width": 25,
-      "instanceId": "mp7ea6ofk1mmp5mz5nz286rxk2924vx",
-      "mountPath": "/"
+      "instanceId": "mpom3uwur32d31crviz",
+      "mountPath": "/",
+      "showMountPath": false
     },
     {
       "id": "battery",
@@ -441,7 +442,9 @@
   "updaterCustomCommand": "",
   "updaterTerminalAdditionalParams": "",
   "displayNameMode": "system",
-  "screenPreferences": {},
+  "screenPreferences": {
+    "wallpaper": []
+  },
   "showOnLastDisplay": {},
   "niriOutputSettings": {},
   "hyprlandOutputSettings": {},

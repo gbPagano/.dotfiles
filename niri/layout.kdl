@@ -44,8 +44,14 @@ layout {
     }
 }
 
+// Blurred wallpaper in the overview backdrop.
+// The sharp wallpaper (awww-daemon) stays as the normal workspace background;
+// a second awww instance (awww-daemonoverview) holds a pre-blurred copy that
+// niri places into the overview backdrop. niri's own background-effect blur only
+// blurs *behind* translucent surfaces, so it can't blur the opaque backdrop — the
+// pre-blurred image is required.
 layer-rule {
-    match namespace="^dms:blurwallpaper$"
+    match namespace="^awww-daemonoverview$"
     place-within-backdrop true
 }
 

@@ -1,4 +1,8 @@
 {
+  "dankHooks": {
+    "enabled": true,
+    "wallpaperPath": "/home/*/.dotfiles/dms/wallpaper-hook.sh"
+  },
   "textInputDialog": {
     "enabled": true
   },

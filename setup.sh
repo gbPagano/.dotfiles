@@ -119,6 +119,7 @@ run mkdir -p ~/documents ~/downloads ~/pictures ~/projects ~/videos
 
 echo "Installing niri - scrollable-tiling wayland compositor"
 echo "Installing dms-shell - Dank Material Shell desktop environment"
+echo "Installing awww - Wayland wallpaper daemon (sharp workspace bg + overview backdrop)"
 echo "Installing plymouth - graphical boot splash screen"
 echo "Installing greetd - minimal login manager daemon"
 echo "Installing greetd-tuigreet-fork - TUI greeter for greetd"
@@ -126,9 +127,12 @@ echo "Installing unzip - utility for extracting zip files"
 echo "Installing usbutils - USB device listing utilities (lsusb)"
 echo "Installing Papirus icon theme"
 echo "Installing netbird - WireGuard-based mesh VPN client"
+echo "Installing imagemagick - pre-blurs the wallpaper for the niri overview backdrop"
 run $INSTALL \
   niri \
   dms-shell-niri \
+  awww \
+  imagemagick \
   plymouth \
   greetd \
   greetd-tuigreet-fork-git \
@@ -167,6 +171,9 @@ run rm -f /tmp/catppuccin-mocha-dark-cursors.zip
 
 echo "Installing netbirdStatus plugin from DMS registry"
 run dms plugins install netbirdStatus
+
+echo "Installing dankHooks plugin from DMS registry (wallpaper -> awww hook)"
+run dms plugins install dankHooks
 
 DOTFILES_ABS=$(realpath "${SCRIPT_DIR}")
 

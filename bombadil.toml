@@ -2,6 +2,10 @@ dotfiles_dir = ".dotfiles"
 
 [settings]
 vars = ["vars.toml"]
+posthooks = [
+  "systemctl --user daemon-reload",
+  "systemctl --user enable awww.service awww-overview.service",
+]
 
 [settings.dots]
 fzf = { source = "terminal/fzf", target = ".config/fzf", direct = true }
@@ -12,6 +16,8 @@ git = { source = "git/gitconfig", target = ".gitconfig" }
 dms = { source = "dms", target = ".config/DankMaterialShell", direct = true }
 lazygit = { source = "git/lazygit", target = ".config/lazygit", direct = true }
 niri = { source = "niri", target = ".config/niri", direct = true }
+awww = { source = "awww/awww.service", target = ".config/systemd/user/awww.service", direct = true }
+awww_overview = { source = "awww/awww-overview.service", target = ".config/systemd/user/awww-overview.service", direct = true }
 ghostty = { source = "terminal/ghostty", target = ".config/ghostty", direct = true }
 btop = { source = "terminal/btop", target = ".config/btop", direct = true }
 fastfetch = { source = "terminal/fastfetch", target = ".config/fastfetch", direct = true }

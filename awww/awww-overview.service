@@ -1,0 +1,18 @@
+[Unit]
+Description=awww wallpaper daemon (blurred overview backdrop)
+Documentation=https://codeberg.org/lgfae/awww
+PartOf=graphical-session.target
+After=graphical-session.target
+Requisite=graphical-session.target
+
+[Service]
+Type=simple
+# Second awww instance, namespace "overview" -> layer "awww-daemonoverview",
+# which niri places into the overview backdrop. On start it restores the last
+# (pre-blurred) image from its own cache.
+ExecStart=/usr/bin/awww-daemon --namespace overview
+Restart=on-failure
+RestartSec=1
+
+[Install]
+WantedBy=graphical-session.target
