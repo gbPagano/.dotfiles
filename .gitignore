@@ -9,4 +9,5 @@ dms/plugins/netbirdStatus
 dms/plugins/netbirdStatus.meta
 dms/plugins/dankHooks
 dms/plugins/dankHooks.meta
-
+terminal/nushell/history.txt
+terminal/nushell/login.nu
