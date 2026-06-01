@@ -15,10 +15,10 @@
     "pingCount": 14,
     "adminConsoleUrl": "https://netbird.gbpagano.dev/",
     "lastInstalled": true,
-    "lastRunning": false,
-    "lastIp": "",
-    "lastFqdn": "",
-    "lastPeerCount": 0,
-    "lastPeerConnected": 0
+    "lastRunning": true,
+    "lastIp": "100.70.207.82",
+    "lastFqdn": "gbp-dell.netbird.selfhosted",
+    "lastPeerCount": 1,
+    "lastPeerConnected": 1
   }
 }
