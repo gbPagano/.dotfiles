@@ -5,6 +5,18 @@ $env.EDITOR = "nvim"
 # zoxide: silence the `doctor` warning
 $env._ZO_DOCTOR = "0"
 
+# LS_COLORS: nushell's builtin `ls` (and lsd) color filenames from this var.
+# zsh inherits it from the system (grml /etc/zsh/zshrc runs dircolors), but a
+# login nushell does not, so generate the default database ourselves. Without it
+# `ls` falls back to mismatched colors.
+$env.LS_COLORS = (
+    ^dircolors
+    | lines
+    | first
+    | str replace "LS_COLORS='" ""
+    | str replace "';" ""
+)
+
 $env.PATH = (
     $env.PATH
     | split row (char esep)
