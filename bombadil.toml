@@ -25,4 +25,5 @@ nushell = { source = "terminal/nushell", target = ".config/nushell", direct = tr
 paru = { source = "paru/paru.conf", target = ".config/paru/paru.conf", direct = true }
 xdg = { source = "xdg/user-dirs.dirs", target = ".config/user-dirs.dirs", direct = true }
 xdg_conf = { source = "xdg/user-dirs.conf", target = ".config/user-dirs.conf", direct = true }
+fontconfig = { source = "fontconfig", target = ".config/fontconfig", direct = true }
 
