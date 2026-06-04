@@ -73,7 +73,6 @@ blue_echo "Setting up terminal environment"
 blue_echo "==============================="
 
 echo "Installing Zsh - shell"
-echo "Installing Nushell - structured-data shell"
 echo "Installing Ghostty - terminal emulator"
 echo "Installing fzf - fuzzy finder"
 echo "Installing bat - better cat replacement"
@@ -90,7 +89,6 @@ echo "Installing fastfetch - system information tool"
 echo "Installing Jetbrains Mono - nerd font"
 run $INSTALL \
   zsh \
-  nushell \
   ghostty \
   fzf \
   bat \
@@ -109,16 +107,6 @@ run $INSTALL \
 
 echo "Setting Zsh as default shell"
 [ "$(getent passwd "$USER" | cut -d: -f7)" = "/bin/zsh" ] || run chsh -s /bin/zsh "$USER"
-
-# Nushell resolves `source`/`use` at parse-time, so it cannot eval the output of
-# `starship init`/`zoxide init` the way zsh does. Instead we generate those init
-# scripts into the vendor autoload dir, which nushell sources automatically.
-echo "Generating Nushell integration scripts (starship + zoxide)"
-NU_AUTOLOAD="$HOME/.local/share/nushell/vendor/autoload"
-run mkdir -p "$NU_AUTOLOAD"
-starship init nu > "$NU_AUTOLOAD/starship.nu"
-zoxide init nushell --cmd cd > "$NU_AUTOLOAD/zoxide.nu"
-fzf --nushell > "$NU_AUTOLOAD/fzf.nu"
 
 echo "Terminal environment setup complete!"
 
