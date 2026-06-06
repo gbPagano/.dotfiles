@@ -1,0 +1,12 @@
+# Machine-specific Dotter configuration.
+#
+# Copy this file to `.dotter/local.toml` and fill in your details.
+# `dotter deploy` reads `.dotter/local.toml` by default.
+
+# Packages from global.toml deployed by the default `dotter deploy`. The `system` package (root-owned files) is NOT here
+# it is deployed separately via local.system.toml, so the everyday deploy stays user-only and never needs sudo.
+packages = ["terminal", "desktop", "git"]
+
+[variables]
+# Consumed by git/gitconfig as {{git.name}}, {{git.email}}, etc.
+git = { name = "gbPagano", email = "guilhermebpagano@gmail.com", signingkey = "88BA76AFDA1F6EA8", gpgsign = true }

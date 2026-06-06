@@ -1,0 +1,8 @@
+# Selects only the `system` package: the root-owned config under /etc and /boot.
+#
+#   dotter \
+#     --local-config .dotter/local.system.toml \
+#     --cache-file .dotter/cache.system.toml \
+#     --cache-directory .dotter/cache.system \
+#     deploy -f
+packages = ["system"]

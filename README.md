@@ -11,15 +11,23 @@ cd .dotfiles
 ```
 
 > [!IMPORTANT]
-> Before linking, create your `vars.toml` from the example:
+> Before linking, create your machine-local config from the example:
 > ```sh
-> cp example-vars.toml vars.toml
+> cp .dotter/local.example.toml .dotter/local.toml
 > ```
-> Edit `vars.toml` with your personal details. This file is not tracked by git.
+> Edit `.dotter/local.toml` with your git identity. This file is not tracked by git.
 
 ## Updates
 
-After updating any configuration files, run:
+After editing any user dotfile, re-link with:
 ```sh
-bombadil link
+dotter deploy
+```
+
+To update the root-owned system config (under `/etc` and `/boot`):
+```sh
+dotter --local-config .dotter/local.system.toml \
+  --cache-file .dotter/cache.system.toml \
+  --cache-directory .dotter/cache.system \
+  deploy
 ```

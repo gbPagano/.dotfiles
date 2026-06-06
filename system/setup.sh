@@ -118,12 +118,13 @@ run dms plugins install dankHooks
 echo "Enabling dms user service"
 run systemctl --user enable dms.service
 
-echo "Installing greetd config to /etc/greetd and enabling service"
-run sudo mkdir -p /etc/greetd
-run sudo ln -sfn "${DOTFILES_ABS}/system/greetd/config.toml" /etc/greetd/config.toml
-echo "Installing tuigreet config to /etc/tuigreet"
-run sudo mkdir -p /etc/tuigreet
-run sudo ln -sfn "${DOTFILES_ABS}/system/greetd/tuigreet/config.toml" /etc/tuigreet/config.toml
+# Deploy the root-owned `system` packages with dotter. 
+echo "Deploying system config (greetd, tuigreet, plymouth, systemd-boot) with dotter"
+( cd "${DOTFILES_ABS}" && run dotter \
+    --local-config .dotter/local.system.toml \
+    --cache-file .dotter/cache.system.toml \
+    --cache-directory .dotter/cache.system \
+    deploy -f )
 
 # greetd runs tuigreet as the unprivileged `greeter` user, but the config
 # installed above is a symlink into this user's home. The kernel enforces
@@ -158,12 +159,8 @@ run sudo mkdir -p /usr/share/plymouth/themes
 run sudo tar -xzf "${PLYMOUTH_THEME_TMP}/abstract_ring.tar.gz" -C /usr/share/plymouth/themes
 run rm -rf "${PLYMOUTH_THEME_TMP}"
 
-echo "Installing plymouth daemon config (theme = abstract_ring)"
-run sudo install -Dm644 "${DOTFILES_ABS}/system/plymouth/plymouthd.conf" /etc/plymouth/plymouthd.conf
-
-echo "Installing systemd-boot loader.conf (timeout 0, editor disabled)"
-run sudo install -Dm644 "${DOTFILES_ABS}/system/systemd-boot/loader.conf" /boot/loader/loader.conf
-
+# plymouthd.conf (theme = abstract_ring) and the systemd-boot loader.conf were deployed earlier by the dotter system package
+# the theme files are now in place too, so the initramfs below picks up the right theme.
 echo "Injecting plymouth hook into /etc/mkinitcpio.conf (if missing)"
 sudo bash -c "grep -q 'HOOKS=.*plymouth' /etc/mkinitcpio.conf || { sed -i '/^HOOKS=/ s/udev/udev plymouth/' /etc/mkinitcpio.conf && mkinitcpio -P; }"
 

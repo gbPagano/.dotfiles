@@ -1,0 +1,36 @@
+# Packages group related dotfiles. `.dotter/local.toml` (git-ignored, per-machine) selects which packages
+# to deploy and provides personal/secret variables.
+#
+# Files are symlinked by default; a file containing `{{` is auto-detected as a Handlebars template and copied instead.
+#
+# Directories use `{ ..., type = "symbolic", recurse = false }` so the whole directory is a single symlink
+
+[terminal.files]
+"terminal/fzf" = { target = "~/.config/fzf", type = "symbolic", recurse = false }
+"terminal/zsh/zshrc" = "~/.zshrc"
+"terminal/starship.toml" = "~/.config/starship.toml"
+"terminal/ghostty" = { target = "~/.config/ghostty", type = "symbolic", recurse = false }
+"terminal/btop" = { target = "~/.config/btop", type = "symbolic", recurse = false }
+"terminal/fastfetch" = { target = "~/.config/fastfetch", type = "symbolic", recurse = false }
+
+[desktop.files]
+"nvim" = { target = "~/.config/nvim", type = "symbolic", recurse = false }
+"niri" = { target = "~/.config/niri", type = "symbolic", recurse = false }
+"dms" = { target = "~/.config/DankMaterialShell", type = "symbolic", recurse = false }
+"fontconfig" = { target = "~/.config/fontconfig", type = "symbolic", recurse = false }
+"awww/awww.service" = "~/.config/systemd/user/awww.service"
+"awww/awww-overview.service" = "~/.config/systemd/user/awww-overview.service"
+"paru/paru.conf" = "~/.config/paru/paru.conf"
+"xdg/user-dirs.dirs" = "~/.config/user-dirs.dirs"
+"xdg/user-dirs.conf" = "~/.config/user-dirs.conf"
+
+[git.files]
+"git/lazygit" = { target = "~/.config/lazygit", type = "symbolic", recurse = false }
+"git/gitconfig" = "~/.gitconfig"
+
+# System-level config (targets under /etc and /boot). It is deployed separately via local.system.toml (see system/setup.sh)
+[system.files]
+"system/greetd/config.toml" = { target = "/etc/greetd/config.toml", type = "symbolic", owner = "root" }
+"system/greetd/tuigreet/config.toml" = { target = "/etc/tuigreet/config.toml", type = "symbolic", owner = "root" }
+"system/plymouth/plymouthd.conf" = { target = "/etc/plymouth/plymouthd.conf", type = "symbolic", owner = "root" }
+"system/systemd-boot/loader.conf" = { target = "/boot/loader/loader.conf", type = "template", owner = "root" }

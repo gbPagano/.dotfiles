@@ -103,20 +103,30 @@ echo "Setting Zsh as default shell"
 
 echo "Terminal environment setup complete!"
 
+blue_echo "================================="
+blue_echo "Installing dotter dotfile manager"
+blue_echo "================================="
+run $INSTALL dotter-rs-bin
+
+# local.toml (git-ignored, machine-specific: selected packages + git identity)
+# must exist before linking. Create it manually from the example.
+if [ ! -e "${SCRIPT_DIR}/.dotter/local.toml" ]; then
+  echo "Missing .dotter/local.toml - create it from the example first:"
+  echo "  ln -sfn local.example.toml .dotter/local.toml"
+  exit 1
+fi
+
 blue_echo "=============================="
 blue_echo "Setting up system-level config"
 blue_echo "=============================="
+# Installs the system packages and deploys the root-owned `system` package
+# (the /etc & /boot config files) with dotter, at the right point in its flow.
 source ${SCRIPT_DIR}/system/setup.sh
 
-blue_echo "========================================"
-blue_echo "Installing toml-bombadil dotfile manager"
-blue_echo "========================================"
-
-run $INSTALL toml-bombadil
-
-echo "Linking dotfiles with bombadil"
-run bombadil install "${SCRIPT_DIR}"
-run bombadil link -f
+blue_echo "============================"
+blue_echo "Linking dotfiles with dotter"
+blue_echo "============================"
+( cd "${SCRIPT_DIR}" && run dotter deploy -f )
 
 green_echo "==============================="
 green_echo "Dotfiles installation complete!"
