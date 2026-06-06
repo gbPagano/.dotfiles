@@ -68,6 +68,7 @@ echo "Installing usbutils - USB device listing utilities (lsusb)"
 echo "Installing Papirus icon theme"
 echo "Installing netbird - WireGuard-based mesh VPN client"
 echo "Installing imagemagick - pre-blurs the wallpaper for the niri overview backdrop"
+echo "Installing gsettings-desktop-schemas - provides org.gnome.desktop.interface schema (icon theme / color scheme)"
 run $INSTALL \
   niri \
   dms-shell-niri \
@@ -79,6 +80,7 @@ run $INSTALL \
   unzip \
   usbutils \
   papirus-icon-theme \
+  gsettings-desktop-schemas \
   netbird-bin
 
 # The AUR colloid-catppuccin-gtk-theme-git clones the full git history (~50 MB)
