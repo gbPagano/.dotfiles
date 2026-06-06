@@ -14,7 +14,7 @@ green_echo() {
   echo -e "\033[0;32m$@\033[0m"
 }
 
-SCRIPT_DIR=$(dirname "$0")
+SCRIPT_DIR=$(cd "$(dirname "$0")" && pwd)
 INSTALL="paru -S --needed --noconfirm --skipreview"
 
 blue_echo "========================="
