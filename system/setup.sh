@@ -16,16 +16,23 @@ green_echo() {
   echo -e "\033[0;32m$@\033[0m"
 }
 
+# Install a DMS plugin only if it isn't already present. `dms plugins install`
+# exits FATAL on an already-installed plugin, which breaks setup re-runs.
+dms_plugin_install() {
+  if dms plugins list 2>/dev/null | grep -q "ID: $1"; then
+    echo "DMS plugin $1 already installed, skipping"
+  else
+    run dms plugins install "$1"
+  fi
+}
+
 SYSTEM_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 DOTFILES_ABS=$(realpath "${SYSTEM_DIR}/..")
 INSTALL="${INSTALL:-paru -S --needed --noconfirm --skipreview}"
 NVIDIA="${NVIDIA:-true}"
 PICO_FIDO="${PICO_FIDO:-true}"
 
-blue_echo "==================================="
-blue_echo "Installing Kanata keyboard remapper"
-blue_echo "==================================="
-
+echo "Installing Kanata keyboard remapper"
 # Install kanata and run it as a systemd service that loads our keymap.
 KANATA_FILE="${SYSTEM_DIR}/kanata/kanata.kbd"
 KANATA_SERVICE="/etc/systemd/system/kanata.service"
@@ -112,10 +119,10 @@ run unzip -o -q /tmp/catppuccin-mocha-dark-cursors.zip -d ~/.local/share/icons
 run rm -f /tmp/catppuccin-mocha-dark-cursors.zip
 
 echo "Installing netbirdStatus plugin from DMS registry"
-run dms plugins install netbirdStatus
+dms_plugin_install netbirdStatus
 
 echo "Installing dankHooks plugin from DMS registry (wallpaper -> awww hook)"
-run dms plugins install dankHooks
+dms_plugin_install dankHooks
 
 echo "Enabling dms user service"
 run systemctl --user enable dms.service
