@@ -68,7 +68,7 @@ echo "Installing imagemagick - pre-blurs the wallpaper for the niri overview bac
 echo "Installing gsettings-desktop-schemas - provides org.gnome.desktop.interface schema (icon theme / color scheme)"
 run $INSTALL \
   niri \
-  dms-shell-niri \
+  dms-shell-git \
   awww \
   imagemagick \
   plymouth \
