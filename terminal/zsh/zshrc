@@ -40,6 +40,7 @@ alias ls="lsd"
 alias tree="lsd --tree --depth 2"
 alias cdtmp="cd $(mktemp -d)"
 alias lvim="NVIM_APPNAME=lazyvim nvim"
+alias nb="numbat"
 rgd() {
     rg --json -C 2 "$@" | delta
 }
