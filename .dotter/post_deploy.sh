@@ -15,7 +15,7 @@ fi
 if [ -L "${HOME}/.config/DankMaterialShell" ]; then
   # `dms plugins install` exits FATAL on an already-installed plugin; only
   # install the ones not yet listed so re-runs stay idempotent.
-  for plugin in netbirdStatus dankHooks; do
+  for plugin in netbirdStatus dankHooks Calculator; do
     if dms plugins list 2>/dev/null | grep -q "ID: ${plugin}"; then
       echo "DMS plugin ${plugin} already installed, skipping"
     else

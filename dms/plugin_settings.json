@@ -20,5 +20,10 @@
     "lastFqdn": "gbp-dell.netbird.selfhosted",
     "lastPeerCount": 2,
     "lastPeerConnected": 2
+  },
+  "calculator": {
+    "enabled": true,
+    "trigger": "=",
+    "calcEngine": "numbat"
   }
 }
