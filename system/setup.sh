@@ -95,10 +95,8 @@ run sudo bash "${COLLOID_TMP}/Colloid-gtk-theme-${COLLOID_TAG}/install.sh" \
   --color dark --tweaks catppuccin
 run rm -rf "${COLLOID_TMP}"
 
-echo "Setting GTK_THEME in /etc/environment (GTK4 apps)"
-sudo bash -c "grep -q 'GTK_THEME' /etc/environment || echo 'GTK_THEME=Colloid-Dark-Catppuccin' >> /etc/environment"
-
-echo "Applying GTK icon theme and color scheme via gsettings"
+echo "Applying GTK theme, icon theme, and color scheme via gsettings"
+run gsettings set org.gnome.desktop.interface gtk-theme "Colloid-Dark-Catppuccin"
 run gsettings set org.gnome.desktop.interface icon-theme "Papirus-Dark"
 run gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"
 

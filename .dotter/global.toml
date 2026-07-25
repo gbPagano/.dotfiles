@@ -20,6 +20,11 @@
 "fontconfig" = { target = "~/.config/fontconfig", type = "symbolic", recurse = false }
 "awww/awww.service" = "~/.config/systemd/user/awww.service"
 "awww/awww-overview.service" = "~/.config/systemd/user/awww-overview.service"
+"gtk/environment.d/10-gtk-theme.conf" = "~/.config/environment.d/10-gtk-theme.conf"
+"gtk/gtk-3.0/settings.ini" = "~/.config/gtk-3.0/settings.ini"
+"gtk/gtk-3.0/gtk.css" = "~/.config/gtk-3.0/gtk.css"
+"gtk/gtk-4.0/settings.ini" = "~/.config/gtk-4.0/settings.ini"
+"gtk/gtk-4.0/gtk.css" = "~/.config/gtk-4.0/gtk.css"
 "paru/paru.conf" = "~/.config/paru/paru.conf"
 "xdg/user-dirs.dirs" = "~/.config/user-dirs.dirs"
 "xdg/user-dirs.conf" = "~/.config/user-dirs.conf"
