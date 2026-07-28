@@ -16,11 +16,15 @@
 [desktop.files]
 "nvim" = { target = "~/.config/nvim", type = "symbolic", recurse = false }
 "niri" = { target = "~/.config/niri", type = "symbolic", recurse = false }
-"dms" = { target = "~/.config/DankMaterialShell", type = "symbolic", recurse = false }
+"dms/settings.json" = "~/.config/DankMaterialShell/settings.json"
+"dms/plugin_settings.json" = "~/.config/DankMaterialShell/plugin_settings.json"
+"dms/themes/catppuccin/theme.json" = "~/.config/DankMaterialShell/themes/catppuccin/theme.json"
+"dms/wallpaper-hook.sh" = "~/.config/DankMaterialShell/wallpaper-hook.sh"
+"dms/plugins/textInputDialog" = { target = "~/.config/DankMaterialShell/plugins/textInputDialog", type = "symbolic", recurse = false }
+"dms/dms.service.d/gtk-config.conf" = "~/.config/systemd/user/dms.service.d/gtk-config.conf"
 "fontconfig" = { target = "~/.config/fontconfig", type = "symbolic", recurse = false }
 "awww/awww.service" = "~/.config/systemd/user/awww.service"
 "awww/awww-overview.service" = "~/.config/systemd/user/awww-overview.service"
-"gtk/environment.d/10-gtk-theme.conf" = "~/.config/environment.d/10-gtk-theme.conf"
 "gtk/gtk-3.0/settings.ini" = "~/.config/gtk-3.0/settings.ini"
 "gtk/gtk-3.0/gtk.css" = "~/.config/gtk-3.0/gtk.css"
 "gtk/gtk-4.0/settings.ini" = "~/.config/gtk-4.0/settings.ini"
