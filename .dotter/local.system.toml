@@ -4,5 +4,6 @@
 #     --local-config .dotter/local.system.toml \
 #     --cache-file .dotter/cache.system.toml \
 #     --cache-directory .dotter/cache.system \
+#     --pre-deploy .dotter/pre_deploy.system.sh \
 #     deploy -f
 packages = ["system"]

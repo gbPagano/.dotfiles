@@ -29,5 +29,9 @@ To update the root-owned system config (under `/etc` and `/boot`):
 dotter --local-config .dotter/local.system.toml \
   --cache-file .dotter/cache.system.toml \
   --cache-directory .dotter/cache.system \
+  --pre-deploy .dotter/pre_deploy.system.sh \
   deploy
 ```
+
+Dotter runs as the current user. The system pre-deploy hook requests `sudo`
+only while provisioning protected targets under `/etc` and `/boot`.

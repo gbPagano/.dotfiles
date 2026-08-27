@@ -112,6 +112,7 @@ echo "Deploying system config (greetd, tuigreet, plymouth, systemd-boot) with do
     --local-config .dotter/local.system.toml \
     --cache-file .dotter/cache.system.toml \
     --cache-directory .dotter/cache.system \
+    --pre-deploy .dotter/pre_deploy.system.sh \
     deploy -f )
 
 # greetd runs tuigreet as the unprivileged `greeter` user, but the config
