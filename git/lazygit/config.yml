@@ -20,11 +20,10 @@ gui:
       - '#cdd6f4'
     searchingActiveBorderColor:
       - '#f9e2af'
-
   authorColors:
     '*': '#b4befe'
 git:
   autoFetch: false
-  pagers:
-    - pager: delta --dark --paging=never
-    - pager: delta --dark --paging=never -s
+  diffRenderers:
+    - command: delta --dark --paging=never
+    - command: delta --dark --paging=never -s
