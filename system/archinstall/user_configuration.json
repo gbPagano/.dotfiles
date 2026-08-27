@@ -22,8 +22,7 @@
             "power_management": "power-profiles-daemon"
         }
     },
-    "archinstall-language": "English",
-    "auth_config": {},
+    "archinstall_language": "English",
     "bootloader_config": {
         "bootloader": "Systemd-boot",
         "removable": false,
@@ -35,6 +34,7 @@
         "linux-lts"
     ],
     "locale_config": {
+        "console_font": "default8x16",
         "kb_layout": "us-acentos",
         "sys_enc": "UTF-8",
         "sys_lang": "en_US.UTF-8"
@@ -72,15 +72,16 @@
         "parallel_downloads": 5
     },
     "profile_config": {
-        "gfx_driver": "Nvidia (open kernel module for newer GPUs, Turing+)",
+        "gfx_driver": "All open-source",
+        "greeter": "ly",
         "profile": {
             "custom_settings": {
-                "Niri": {
+                "niri": {
                     "seat_access": "polkit"
                 }
             },
             "details": [
-                "Niri"
+                "niri"
             ],
             "main": "Desktop"
         }
@@ -92,5 +93,5 @@
         "enabled": true
     },
     "timezone": "America/Sao_Paulo",
-    "version": "4.3"
+    "version": "4.4"
 }

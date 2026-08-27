@@ -128,7 +128,40 @@ run sudo setfacl -m u:greeter:x \
   "${DOTFILES_ABS}/system/greetd/tuigreet"
 run sudo setfacl -m u:greeter:r "${DOTFILES_ABS}/system/greetd/tuigreet/config.toml"
 
-run sudo systemctl enable greetd
+# Replace any existing display manager without stopping the current graphical
+# session. The new service takes over after the next reboot.
+declare -A OLD_DM_PACKAGES=()
+CURRENT_DM_UNIT=$(readlink -f /etc/systemd/system/display-manager.service 2>/dev/null || true)
+
+if [ -n "${CURRENT_DM_UNIT}" ] && [ "$(basename "${CURRENT_DM_UNIT}")" != "greetd.service" ]; then
+  CURRENT_DM_SERVICE=$(basename "${CURRENT_DM_UNIT}")
+  CURRENT_DM_PACKAGE=$(pacman -Qoq "${CURRENT_DM_UNIT}" 2>/dev/null || true)
+
+  echo "Disabling existing display manager ${CURRENT_DM_SERVICE}"
+  run sudo systemctl disable "${CURRENT_DM_SERVICE}"
+
+  if [ -n "${CURRENT_DM_PACKAGE}" ]; then
+    OLD_DM_PACKAGES["${CURRENT_DM_PACKAGE}"]=1
+  fi
+fi
+
+for package in lightdm gdm sddm ly lxdm emptty lemurs; do
+  pacman -Q "${package}" &>/dev/null && OLD_DM_PACKAGES["${package}"]=1
+done
+
+# LightDM greeters depend on LightDM and must be removed in the same transaction.
+while read -r package; do
+  case "${package}" in
+    lightdm-*greeter*) OLD_DM_PACKAGES["${package}"]=1 ;;
+  esac
+done < <(pacman -Qq)
+
+if (( ${#OLD_DM_PACKAGES[@]} > 0 )); then
+  echo "Removing previous display manager packages: ${!OLD_DM_PACKAGES[*]}"
+  run sudo pacman -Rns --noconfirm "${!OLD_DM_PACKAGES[@]}"
+fi
+
+run sudo systemctl enable --force greetd
 
 if [ "${PICO_FIDO}" = "true" ]; then
   source ${SYSTEM_DIR}/pico-fido/setup.sh

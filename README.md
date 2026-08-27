@@ -10,6 +10,10 @@ cd .dotfiles
 ./setup.sh
 ```
 
+The setup replaces any existing display manager (such as LightDM, GDM, SDDM,
+or Ly) with greetd. The current graphical session is left running, and greetd
+takes over after the next reboot.
+
 > [!IMPORTANT]
 > Before linking, create your machine-local config from the example:
 > ```sh
