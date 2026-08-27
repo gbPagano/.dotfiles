@@ -59,7 +59,7 @@ echo "Installing dms-shell - Dank Material Shell desktop environment"
 echo "Installing awww - Wayland wallpaper daemon (sharp workspace bg + overview backdrop)"
 echo "Installing plymouth - graphical boot splash screen"
 echo "Installing greetd - minimal login manager daemon"
-echo "Installing greetd-tuigreet-fork - TUI greeter for greetd"
+echo "Installing greetd-tuigreet - TUI greeter for greetd"
 echo "Installing unzip - utility for extracting zip files"
 echo "Installing usbutils - USB device listing utilities (lsusb)"
 echo "Installing Papirus icon theme"
@@ -68,12 +68,12 @@ echo "Installing imagemagick - pre-blurs the wallpaper for the niri overview bac
 echo "Installing gsettings-desktop-schemas - provides org.gnome.desktop.interface schema (icon theme / color scheme)"
 run $INSTALL \
   niri \
-  dms-shell-git \
+  dms-shell-niri \
   awww \
   imagemagick \
   plymouth \
   greetd \
-  greetd-tuigreet-fork-git \
+  greetd-tuigreet \
   unzip \
   usbutils \
   papirus-icon-theme \
