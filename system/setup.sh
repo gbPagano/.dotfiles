@@ -142,8 +142,10 @@ if [ -n "${CURRENT_DM_UNIT}" ] && [ "$(basename "${CURRENT_DM_UNIT}")" != "greet
   CURRENT_DM_SERVICE=$(basename "${CURRENT_DM_UNIT}")
   CURRENT_DM_PACKAGE=$(pacman -Qoq "${CURRENT_DM_UNIT}" 2>/dev/null || true)
 
-  echo "Disabling existing display manager ${CURRENT_DM_SERVICE}"
-  run sudo systemctl disable "${CURRENT_DM_SERVICE}"
+  if systemctl cat "${CURRENT_DM_SERVICE}" &>/dev/null; then
+    echo "Disabling existing display manager ${CURRENT_DM_SERVICE}"
+    run sudo systemctl disable "${CURRENT_DM_SERVICE}"
+  fi
 
   if [ -n "${CURRENT_DM_PACKAGE}" ]; then
     OLD_DM_PACKAGES["${CURRENT_DM_PACKAGE}"]=1
@@ -160,6 +162,13 @@ while read -r package; do
     lightdm-*greeter*) OLD_DM_PACKAGES["${package}"]=1 ;;
   esac
 done < <(pacman -Qq)
+
+# Ly uses an instantiated service instead of the display-manager alias.
+while read -r service _; do
+  [ -n "${service}" ] || continue
+  echo "Disabling existing display manager ${service}"
+  run sudo systemctl disable "${service}"
+done < <(systemctl list-unit-files 'ly@*.service' --state=enabled --no-legend --no-pager)
 
 if (( ${#OLD_DM_PACKAGES[@]} > 0 )); then
   echo "Removing previous display manager packages: ${!OLD_DM_PACKAGES[*]}"

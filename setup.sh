@@ -1,5 +1,6 @@
 #!/bin/bash
 # Install and configures all dependencies
+set -e
 
 run() {
   echo -e "\033[1;34m$ $@\033[0m"
@@ -37,8 +38,11 @@ if ! command -v paru &>/dev/null; then
 
   run git clone https://aur.archlinux.org/paru.git "${TEMP_DIR}/paru"
 
-  run cd "${TEMP_DIR}/paru"
-  run makepkg -si --noconfirm
+  if ! run makepkg -D "${TEMP_DIR}/paru" -si --noconfirm; then
+    run rm -rf "${TEMP_DIR}"
+    echo "Paru installation failed."
+    exit 1
+  fi
 
   echo "Cleaning up..."
   run rm -rf "${TEMP_DIR}"
