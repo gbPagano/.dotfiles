@@ -30,12 +30,13 @@ dotter deploy
 
 To update the root-owned system config (under `/etc` and `/boot`):
 ```sh
-dotter --local-config .dotter/local.system.toml \
-  --cache-file .dotter/cache.system.toml \
-  --cache-directory .dotter/cache.system \
-  --pre-deploy .dotter/pre_deploy.system.sh \
+sudo install -d -m 0700 /var/cache/dotter-system
+sudo dotter --local-config .dotter/local.system.toml \
+  --cache-file /var/cache/dotter-system/cache.toml \
+  --cache-directory /var/cache/dotter-system/cache \
+  --post-deploy .dotter/post_deploy.system.sh \
   deploy
 ```
 
-Dotter runs as the current user. The system pre-deploy hook requests `sudo`
-only while provisioning protected targets under `/etc` and `/boot`.
+Only the system package runs as root. Its cache lives under `/var/cache`, and
+the no-op post-deploy prevents user-session commands from running as root.

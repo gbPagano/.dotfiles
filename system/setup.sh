@@ -108,12 +108,17 @@ run rm -f /tmp/catppuccin-mocha-dark-cursors.zip
 
 # Deploy the root-owned `system` packages with dotter.
 echo "Deploying system config (greetd, tuigreet, plymouth, systemd-boot) with dotter"
-( cd "${DOTFILES_ABS}" && run dotter \
+SYSTEM_DOTTER_CACHE=/var/cache/dotter-system
+run sudo install -d -m 0700 "${SYSTEM_DOTTER_CACHE}"
+if ! ( cd "${DOTFILES_ABS}" && run sudo dotter \
     --local-config .dotter/local.system.toml \
-    --cache-file .dotter/cache.system.toml \
-    --cache-directory .dotter/cache.system \
-    --pre-deploy .dotter/pre_deploy.system.sh \
-    deploy -f )
+    --cache-file "${SYSTEM_DOTTER_CACHE}/cache.toml" \
+    --cache-directory "${SYSTEM_DOTTER_CACHE}/cache" \
+    --post-deploy .dotter/post_deploy.system.sh \
+    deploy -f ); then
+  echo "Failed to deploy system config; stopping setup" >&2
+  exit 1
+fi
 
 # greetd runs tuigreet as the unprivileged `greeter` user, but the config
 # installed above is a symlink into this user's home. The kernel enforces
