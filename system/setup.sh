@@ -198,10 +198,59 @@ run rm -rf "${PLYMOUTH_THEME_TMP}"
 # plymouthd.conf (theme = abstract_ring) and the systemd-boot loader.conf were deployed earlier by the dotter system package
 # the theme files are now in place too, so the initramfs below picks up the right theme.
 echo "Injecting plymouth hook into /etc/mkinitcpio.conf (if missing)"
-sudo bash -c "grep -q 'HOOKS=.*plymouth' /etc/mkinitcpio.conf || { sed -i '/^HOOKS=/ s/udev/udev plymouth/' /etc/mkinitcpio.conf && mkinitcpio -P; }"
+PLYMOUTH_HOOKS=$(grep -m1 '^HOOKS=' /etc/mkinitcpio.conf || true)
+if [ -z "${PLYMOUTH_HOOKS}" ]; then
+  echo "No active HOOKS line found in /etc/mkinitcpio.conf" >&2
+  exit 1
+fi
 
-echo "Appending plymouth params to /etc/kernel/cmdline (if missing)"
-sudo bash -c "grep -q 'quiet splash' /etc/kernel/cmdline || { sed -i 's|\$| quiet splash loglevel=3 rd.udev.log_level=3 vt.global_cursor_default=0 systemd.show_status=false|' /etc/kernel/cmdline && sudo mkinitcpio -P; }"
+NORMALIZED_HOOKS=" ${PLYMOUTH_HOOKS//[()]/ } "
+if [[ "${NORMALIZED_HOOKS}" != *" plymouth "* ]]; then
+  if [[ "${NORMALIZED_HOOKS}" == *" systemd "* ]]; then
+    run sudo sed -i '/^HOOKS=/ s/\<systemd\>/systemd plymouth/' /etc/mkinitcpio.conf
+  elif [[ "${NORMALIZED_HOOKS}" == *" udev "* ]]; then
+    run sudo sed -i '/^HOOKS=/ s/\<udev\>/udev plymouth/' /etc/mkinitcpio.conf
+  else
+    echo "Unable to place plymouth hook: active HOOKS has neither systemd nor udev" >&2
+    exit 1
+  fi
+fi
+
+KERNEL_CMDLINE=/etc/kernel/cmdline
+if [ ! -s "${KERNEL_CMDLINE}" ]; then
+  echo "Missing ${KERNEL_CMDLINE}; cannot update the UKI kernel command line" >&2
+  exit 1
+fi
+
+echo "Applying plymouth and quiet boot kernel parameters"
+KERNEL_CMDLINE_CONTENT=$(<"${KERNEL_CMDLINE}")
+read -r -a KERNEL_CMDLINE_PARTS <<< "${KERNEL_CMDLINE_CONTENT}"
+KERNEL_PARAMS=(
+  quiet
+  splash
+  loglevel=3
+  rd.udev.log_level=3
+  udev.log_level=3
+  vt.global_cursor_default=0
+  systemd.show_status=false
+  rd.systemd.show_status=false
+)
+
+for parameter in "${KERNEL_PARAMS[@]}"; do
+  key=${parameter%%=*}
+  filtered=()
+  for existing in "${KERNEL_CMDLINE_PARTS[@]}"; do
+    [ "${existing%%=*}" = "${key}" ] || filtered+=("${existing}")
+  done
+  KERNEL_CMDLINE_PARTS=("${filtered[@]}" "${parameter}")
+done
+
+printf '%s\n' "${KERNEL_CMDLINE_PARTS[*]}" | sudo tee "${KERNEL_CMDLINE}" >/dev/null
+
+# Archinstall uses UKIs, so always rebuild after updating the hook, theme, and
+# command line. File contents can already be correct while the UKI is stale.
+echo "Rebuilding initramfs and unified kernel images"
+run sudo mkinitcpio -P
 
 if [ "${NVIDIA}" = "true" ]; then
   source ${SYSTEM_DIR}/nvidia/setup.sh
