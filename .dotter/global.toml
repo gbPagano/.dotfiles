@@ -21,7 +21,9 @@
 "dms/themes/catppuccin/theme.json" = "~/.config/DankMaterialShell/themes/catppuccin/theme.json"
 "dms/wallpaper-hook.sh" = "~/.config/DankMaterialShell/wallpaper-hook.sh"
 "dms/plugins/textInputDialog" = { target = "~/.config/DankMaterialShell/plugins/textInputDialog", type = "symbolic", recurse = false }
+"dms/plugins/aiQuotas" = { target = "~/.config/DankMaterialShell/plugins/aiQuotas", type = "symbolic", recurse = false }
 "dms/dms.service.d/gtk-config.conf" = "~/.config/systemd/user/dms.service.d/gtk-config.conf"
+"dms/dms.service.d/ai-quotas.conf" = "~/.config/systemd/user/dms.service.d/ai-quotas.conf"
 "fontconfig" = { target = "~/.config/fontconfig", type = "symbolic", recurse = false }
 "awww/awww.service" = "~/.config/systemd/user/awww.service"
 "awww/awww-overview.service" = "~/.config/systemd/user/awww-overview.service"
@@ -32,6 +34,12 @@
 "paru/paru.conf" = "~/.config/paru/paru.conf"
 "xdg/user-dirs.dirs" = "~/.config/user-dirs.dirs"
 "xdg/user-dirs.conf" = "~/.config/user-dirs.conf"
+
+# Templates referencing {{ai_quotas.zai_api_key}} need the variable to exist
+# (Dotter renders in strict mode). Empty default; the real key comes from the
+# untracked .dotter/local.toml.
+[desktop.variables]
+ai_quotas = { zai_api_key = "" }
 
 [git.files]
 "git/lazygit" = { target = "~/.config/lazygit", type = "symbolic", recurse = false }

@@ -112,13 +112,20 @@ blue_echo "Installing dotter dotfile manager"
 blue_echo "================================="
 run $INSTALL dotter-rs-bin
 
-# local.toml (git-ignored, machine-specific: selected packages + git identity)
-# must exist before linking. Create it manually from the example.
+# local.toml (git-ignored, machine-specific: selected packages, git identity
+# and secrets such as the DMS AI Quotas Z.ai key) must exist before linking.
+# Create it manually from the example.
 if [ ! -e "${SCRIPT_DIR}/.dotter/local.toml" ]; then
   echo "Missing .dotter/local.toml - create it from the example first:"
-  echo "  ln -sfn local.example.toml .dotter/local.toml"
+  echo "  cp ${SCRIPT_DIR}/.dotter/local.example.toml ${SCRIPT_DIR}/.dotter/local.toml"
   exit 1
 fi
+
+blue_echo "=========================="
+blue_echo "Initializing submodules"
+blue_echo "=========================="
+# The DMS aiQuotas plugin is a git submodule (dms/plugins/aiQuotas).
+( cd "${SCRIPT_DIR}" && run git submodule update --init --recursive )
 
 blue_echo "=============================="
 blue_echo "Setting up system-level config"

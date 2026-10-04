@@ -10,3 +10,8 @@ packages = ["terminal", "desktop", "git"]
 [variables]
 # Consumed by git/gitconfig as {{git.name}}, {{git.email}}, etc.
 git = { name = "gbPagano", email = "guilhermebpagano@gmail.com", signingkey = "88BA76AFDA1F6EA8", gpgsign = true }
+
+# Z.ai Coding Plan key for the DMS AI Quotas plugin, rendered into
+# ~/.config/systemd/user/dms.service.d/ai-quotas.conf as ANTHROPIC_AUTH_TOKEN.
+# Set the real value only in your untracked .dotter/local.toml.
+ai_quotas = { zai_api_key = "" }

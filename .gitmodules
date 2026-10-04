@@ -1,0 +1,3 @@
+[submodule "dms/plugins/aiQuotas"]
+	path = dms/plugins/aiQuotas
+	url = https://github.com/gbPagano/dms-ai-quotas.git

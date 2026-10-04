@@ -18,6 +18,12 @@ if [ -e "${HOME}/.config/systemd/user/awww.service" ]; then
   systemctl --user enable awww.service awww-overview.service
 fi
 
+# The Z.ai key for the AI Quotas plugin is rendered into the DMS unit drop-in
+# by Dotter; keep it readable only by the user.
+if [ -f "${HOME}/.config/systemd/user/dms.service.d/ai-quotas.conf" ]; then
+  chmod 600 "${HOME}/.config/systemd/user/dms.service.d/ai-quotas.conf"
+fi
+
 # Install DMS plugins once Dotter has created the real config directory.
 if [ -d "${HOME}/.config/DankMaterialShell" ]; then
   # `dms plugins install` exits FATAL on an already-installed plugin; only

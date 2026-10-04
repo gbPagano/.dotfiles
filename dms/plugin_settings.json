@@ -17,13 +17,33 @@
     "lastInstalled": true,
     "lastRunning": true,
     "lastIp": "100.70.207.82",
-    "lastFqdn": "gbp-dell.netbird.selfhosted",
-    "lastPeerCount": 2,
-    "lastPeerConnected": 2
+    "lastFqdn": "gbp-dell.ip.local",
+    "lastPeerCount": 3,
+    "lastPeerConnected": 3
   },
   "calculator": {
     "enabled": true,
-    "trigger": "=",
-    "calcEngine": "numbat"
+    "trigger": "",
+    "calcEngine": "numbat",
+    "noTrigger": true
+  },
+  "aiQuotas": {
+    "enabled": true,
+    "claudeEnabled": false,
+    "openCodeEnabled": true,
+    "deepSeekEnabled": false,
+    "grokEnabled": false,
+    "antigravityEnabled": false,
+    "openRouterEnabled": false,
+    "showResetCountdown": true,
+    "pinnedLimits": "{\"claude\":[\"5h\"],\"codex\":[\"5h\"],\"opencode\":[\"Rolling\"],\"zai\":[\"5h\"],\"deepseek\":[\"balance\"],\"openrouter\":[\"balance\"],\"grok\":[\"Billing\"],\"antigravity\":[\"Gemini Models - Five Hour Limit Remaining\"]}",
+    "showResetTime": true,
+    "codexEnabled": false
+  },
+  "voxTypeOsd": {
+    "enabled": true
+  },
+  "voxtypeActivityOverlay": {
+    "enabled": true
   }
 }
