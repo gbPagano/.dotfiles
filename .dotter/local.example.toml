@@ -5,7 +5,7 @@
 
 # Packages from global.toml deployed by the default `dotter deploy`. The `system` package (root-owned files) is NOT here
 # it is deployed separately via local.system.toml, so the everyday deploy stays user-only and never needs sudo.
-packages = ["terminal", "desktop", "git"]
+packages = ["terminal", "desktop", "git", "agents"]
 
 [variables]
 # Consumed by git/gitconfig as {{git.name}}, {{git.email}}, etc.

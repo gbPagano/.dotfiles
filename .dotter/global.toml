@@ -41,6 +41,11 @@
 [desktop.variables]
 ai_quotas = { zai_api_key = "" }
 
+[agents.files]
+"agents/skills" = { target = "~/.agents/skills", type = "symbolic", recurse = false }
+"agents/opencode/instructions.md" = "~/.config/opencode/AGENTS.md"
+"agents/codex/instructions.md" = "~/.codex/AGENTS.md"
+
 [git.files]
 "git/lazygit" = { target = "~/.config/lazygit", type = "symbolic", recurse = false }
 "git/gitconfig" = "~/.gitconfig"
