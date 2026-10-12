@@ -56,7 +56,7 @@ usudo() {
 }
 
 # path
-export PATH=$PATH:$HOME/.local/bin:$HOME/.cargo/bin
+export PATH=$PATH:$HOME/.local/bin:$HOME/.cargo/bin:$HOME/.npm-global/bin
 export CDPATH=$HOME:$HOME/projects
 export FLYCTL_INSTALL="$HOME/.fly"
 export EDITOR=nvim
