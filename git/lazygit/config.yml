@@ -20,8 +20,8 @@ gui:
       - '#cdd6f4'
     searchingActiveBorderColor:
       - '#f9e2af'
-  authorColors:
-    '*': '#b4befe'
+    authorColors:
+      '*': '#b4befe'
 git:
   autoFetch: false
   diffRenderers:
