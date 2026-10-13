@@ -15,3 +15,9 @@ git = { name = "gbPagano", email = "guilhermebpagano@gmail.com", signingkey = "8
 # ~/.config/systemd/user/dms.service.d/ai-quotas.conf as ANTHROPIC_AUTH_TOKEN.
 # Set the real value only in your untracked .dotter/local.toml.
 ai_quotas = { zai_api_key = "" }
+
+# OrcaSlicer Remote API token, ai-memory bearer token and ai-memory endpoint,
+# rendered into ~/.config/opencode/opencode.jsonc (source:
+# agents/opencode/opencode.jsonc). Set the real tokens only in your untracked
+# .dotter/local.toml; the URL is not a secret.
+mcp = { orca_api_token = "", ai_memory_token = "", ai_memory_url = "https://ai-memory.internal.gbpagano.dev/mcp" }

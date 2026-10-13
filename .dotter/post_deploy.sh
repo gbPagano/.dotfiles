@@ -24,6 +24,12 @@ if [ -f "${HOME}/.config/systemd/user/dms.service.d/ai-quotas.conf" ]; then
   chmod 600 "${HOME}/.config/systemd/user/dms.service.d/ai-quotas.conf"
 fi
 
+# The opencode config is rendered by Dotter from agents/opencode/opencode.jsonc
+# and embeds MCP tokens; keep it readable only by the user.
+if [ -f "${HOME}/.config/opencode/opencode.jsonc" ]; then
+  chmod 600 "${HOME}/.config/opencode/opencode.jsonc"
+fi
+
 # Install DMS plugins once Dotter has created the real config directory.
 if [ -d "${HOME}/.config/DankMaterialShell" ]; then
   # `dms plugins install` exits FATAL on an already-installed plugin; only

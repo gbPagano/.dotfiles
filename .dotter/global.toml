@@ -44,7 +44,16 @@ ai_quotas = { zai_api_key = "" }
 [agents.files]
 "agents/skills" = { target = "~/.agents/skills", type = "symbolic", recurse = false }
 "agents/opencode/instructions.md" = "~/.config/opencode/AGENTS.md"
+"agents/opencode/opencode.jsonc" = "~/.config/opencode/opencode.jsonc"
 "agents/codex/instructions.md" = "~/.codex/AGENTS.md"
+
+# Template variables for the opencode config, including its MCP servers
+# (agents/opencode/opencode.jsonc). Empty defaults so a fresh clone can deploy
+# without secrets; the real tokens come from the untracked .dotter/local.toml.
+# The ai-memory URL is not a secret, so it keeps its default here (overridable
+# from local.toml).
+[agents.variables]
+mcp = { orca_api_token = "", ai_memory_token = "", ai_memory_url = "https://ai-memory.internal.gbpagano.dev/mcp" }
 
 [git.files]
 "git/lazygit" = { target = "~/.config/lazygit", type = "symbolic", recurse = false }

@@ -1,0 +1,72 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "permission": {
+    "edit": "ask"
+  },
+  "provider": {
+    // Detected openai authentication; opencode-quota added this global provider declaration.
+    "openai": {},
+    // Detected zai authentication; opencode-quota added this global provider declaration.
+    "zai": {},
+    // Detected opencode-go authentication; opencode-quota added this global provider declaration.
+    "opencode-go": {}
+  },
+  // MCP servers, versioned in the dotfiles. Tokens are rendered by Dotter from
+  // the untracked .dotter/local.toml (variables mcp.orca_api_token,
+  // mcp.ai_memory_token and mcp.ai_memory_url; see .dotter/local.example.toml).
+  // Edit THIS file in the dotfiles repo, then run `dotter deploy`.
+  "mcp": {
+    // OrcaSlicer MCP (MaxEllis fork, v2.4.2-mcp.10). Requires the "OrcaSlicer (MCP)"
+    // build running with Remote API enabled; ORCA_API_TOKEN comes from
+    // Preferences -> Remote API (or ~/.config/OrcaSlicer/OrcaSlicer.conf: app.remote_api_token).
+    "orcaslicer": {
+      "type": "local",
+      "command": [
+        "/home/gbpagano/.local/bin/orcaslicer-mcp"
+      ],
+      "enabled": true,
+      "environment": {
+        "ORCA_API_TOKEN": "{{mcp.orca_api_token}}"
+      }
+    },
+    "blender-mcp": {
+      "type": "local",
+      "command": ["uvx", "mcp-for-blender"],
+      "enabled": true,
+      "environment": {
+        "BLENDER_HOST": "localhost",
+        "BLENDER_PORT": "9876"
+      }
+    },
+    "open-design": {
+      "type": "local",
+      "command": [
+        "od",
+        "mcp",
+        "--daemon-url",
+        "http://127.0.0.1:7456"
+      ],
+      "enabled": true
+    },
+    "ai-memory": {
+      "type": "remote",
+      "url": "{{mcp.ai_memory_url}}",
+      "enabled": true,
+      "headers": {
+        "Authorization": "Bearer {{mcp.ai_memory_token}}"
+      }
+    },
+    "freecad": {
+      "type": "local",
+      "command": [
+        "uvx",
+        "freecad-mcp"
+      ]
+    }
+  },
+  // OpenCode Quota: tuiCommandDisplay chooses whether native TUI command output appears in the session transcript or a local popup dialog.
+  // OpenCode Quota: loads the server plugin for slash commands and quota checks.
+  "plugin": [
+    "@slkiser/opencode-quota@latest"
+  ]
+}
