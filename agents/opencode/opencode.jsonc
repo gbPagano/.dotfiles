@@ -41,7 +41,7 @@
     "open-design": {
       "type": "local",
       "command": [
-        "od",
+        "open-design",
         "mcp",
         "--daemon-url",
         "http://127.0.0.1:7456"
