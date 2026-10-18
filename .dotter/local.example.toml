@@ -11,11 +11,6 @@ packages = ["terminal", "desktop", "git", "agents"]
 # Consumed by git/gitconfig as {{git.name}}, {{git.email}}, etc.
 git = { name = "gbPagano", email = "guilhermebpagano@gmail.com", signingkey = "88BA76AFDA1F6EA8", gpgsign = true }
 
-# Z.ai Coding Plan key for the DMS AI Quotas plugin, rendered into
-# ~/.config/systemd/user/dms.service.d/ai-quotas.conf as ANTHROPIC_AUTH_TOKEN.
-# Set the real value only in your untracked .dotter/local.toml.
-ai_quotas = { zai_api_key = "" }
-
 # OrcaSlicer Remote API token, ai-memory bearer token and ai-memory endpoint,
 # rendered into ~/.config/opencode/opencode.jsonc (source:
 # agents/opencode/opencode.jsonc). Set the real tokens only in your untracked

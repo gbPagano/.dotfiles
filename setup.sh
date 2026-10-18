@@ -113,19 +113,13 @@ blue_echo "================================="
 run $INSTALL dotter-rs-bin
 
 # local.toml (git-ignored, machine-specific: selected packages, git identity
-# and secrets such as the DMS AI Quotas Z.ai key) must exist before linking.
+# and machine-local secrets) must exist before linking.
 # Create it manually from the example.
 if [ ! -e "${SCRIPT_DIR}/.dotter/local.toml" ]; then
   echo "Missing .dotter/local.toml - create it from the example first:"
   echo "  cp ${SCRIPT_DIR}/.dotter/local.example.toml ${SCRIPT_DIR}/.dotter/local.toml"
   exit 1
 fi
-
-blue_echo "=========================="
-blue_echo "Initializing submodules"
-blue_echo "=========================="
-# The DMS aiQuotas plugin is a git submodule (dms/plugins/aiQuotas).
-( cd "${SCRIPT_DIR}" && run git submodule update --init --recursive )
 
 blue_echo "=============================="
 blue_echo "Setting up system-level config"
@@ -137,6 +131,7 @@ source ${SCRIPT_DIR}/system/setup.sh
 blue_echo "============================"
 blue_echo "Linking dotfiles with dotter"
 blue_echo "============================"
+# The post-deploy hook installs DMS plugins, including AI Quotas, from the registry.
 ( cd "${SCRIPT_DIR}" && run dotter deploy -f )
 
 green_echo "==============================="

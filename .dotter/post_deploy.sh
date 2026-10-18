@@ -18,12 +18,6 @@ if [ -e "${HOME}/.config/systemd/user/awww.service" ]; then
   systemctl --user enable awww.service awww-overview.service
 fi
 
-# The Z.ai key for the AI Quotas plugin is rendered into the DMS unit drop-in
-# by Dotter; keep it readable only by the user.
-if [ -f "${HOME}/.config/systemd/user/dms.service.d/ai-quotas.conf" ]; then
-  chmod 600 "${HOME}/.config/systemd/user/dms.service.d/ai-quotas.conf"
-fi
-
 # The opencode config is rendered by Dotter from agents/opencode/opencode.jsonc
 # and embeds MCP tokens; keep it readable only by the user.
 if [ -f "${HOME}/.config/opencode/opencode.jsonc" ]; then
@@ -34,7 +28,7 @@ fi
 if [ -d "${HOME}/.config/DankMaterialShell" ]; then
   # `dms plugins install` exits FATAL on an already-installed plugin; only
   # install the ones not yet listed so re-runs stay idempotent.
-  for plugin in netbirdStatus dankHooks Calculator; do
+  for plugin in netbirdStatus dankHooks Calculator aiQuotas; do
     if dms plugins list 2>&1 | grep -Fi "ID: ${plugin}" >/dev/null; then
       echo "DMS plugin ${plugin} already installed, skipping"
     else

@@ -20,8 +20,7 @@ takes over after the next reboot.
 > cp .dotter/local.example.toml .dotter/local.toml
 > ```
 > Edit `.dotter/local.toml` with your git identity and machine-local secrets
-> (for example `ai_quotas.zai_api_key`, the Z.ai key used by the DMS AI Quotas
-> plugin). This file is not tracked by git.
+> (for example the MCP tokens). This file is not tracked by git.
 
 ## Updates
 
